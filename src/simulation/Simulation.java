@@ -1,13 +1,17 @@
+package simulation;
+
 import entities.Child;
 import entities.Santa;
+import factories.ScoreStrategyFactory;
 import input.AnnualChanges;
 import input.ChildrenInput;
 import input.Input;
+import interfaces.ScoreStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Simulation {
+public final class Simulation {
      /*
      *  List in which I keep all the children that
      *  received gifts from the current round
@@ -24,7 +28,7 @@ public class Simulation {
 
      Santa santa;
 
-     public Simulation (Input input) {
+     public Simulation (final Input input) {
          rounds = new ArrayList<>(input.getNumberOfYears() + 1);
 
          allChildren = new ArrayList<>();
@@ -38,30 +42,63 @@ public class Simulation {
          santa = new Santa(input.getSantaBudget());
      }
 
-    void simulateAllRounds () {
+    public void simulateAllRounds () {
         initialRound();
+        rounds.add(allChildren);
         for (AnnualChanges annualChange : annualChanges) {
             basicRound(annualChange);
+            rounds.add(allChildren);
         }
+
     }
 
-     void initialRound () {
+     public void initialRound () {
          /* Remove all children 18+ */
+         System.out.println(allChildren.size());
+
          allChildren.removeIf(child -> child.getAge() > 18);
 
+//         System.out.println(allChildren.size());
          /* Determine age category for each child from the current round */
          allChildren.forEach(Child::determineAgeCategory);
 
          allChildren.forEach(Child::updateNiceScoreList);
 
+         /* Compute average score for each child */
+         ScoreStrategyFactory scoreStrategyFactory = ScoreStrategyFactory.getInstance();
+
+         for (Child child : allChildren) {
+             ScoreStrategy strategy = scoreStrategyFactory.createStrategy(child, allChildren);
+
+             assert strategy != null;
+             strategy.computeAverageScore();
+         }
+
+         calculateBudget();
+
 
 
      }
 
-     void basicRound (final AnnualChanges annualChange) {
+     public void basicRound(final AnnualChanges annualChange) {
 
      }
 
+    /**
+     *  Calculate the buget assigned for each child
+     */
+    public void calculateBudget() {
+         Double averageScoreSum = 0.0;
+         for (Child child : allChildren) {
+             averageScoreSum += child.getAverageScore();
+         }
+
+        Double budgetUnit = santa.getSantaBudget() / averageScoreSum;
+
+         for (Child child : allChildren) {
+             child.setAssignedBudget(budgetUnit * child.getAverageScore());
+         }
+     }
 
     public List<Child> getAllChildren() {
         return allChildren;

@@ -7,11 +7,11 @@ public final class SantaGiftsListInput {
     private Double price;
     private String category;
 
-    public SantaGiftsListInput(String productName, Double price, String category) {
-        this.productName = productName;
-        this.price = price;
-        this.category = category;
-    }
+//    public SantaGiftsListInput(String productName, Double price, String category) {
+//        this.productName = productName;
+//        this.price = price;
+//        this.category = category;
+//    }
 
     public String getProductName() {
         return productName;
@@ -39,10 +39,10 @@ public final class SantaGiftsListInput {
 
     @Override
     public String toString() {
-        return "SantaGiftsListInput{" +
-                "productName='" + productName + '\'' +
-                ", price=" + price +
-                ", category=" + category +
+        return "\nSantaGiftsListInput{" +
+                "\nproductName='" + productName + '\'' +
+                ",\n price=" + price +
+                ",\n category=" + category +
                 '}';
     }
 }

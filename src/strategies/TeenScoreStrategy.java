@@ -16,6 +16,17 @@ public class TeenScoreStrategy implements ScoreStrategy {
 
     @Override
     public void computeAverageScore() {
+        for (Child child : children) {
+            if (child.getId() == childId) {
+                Double up = 0.0;
+                Double down = 0.0;
 
+                for (int i = 0; i < child.getNiceScoreHistory().size(); i++) {
+                    down += i + 1;
+                    up += (i + 1) * child.getNiceScoreHistory().get(i);
+                }
+                child.setAverageScore(up / down);
+            }
+        }
     }
 }

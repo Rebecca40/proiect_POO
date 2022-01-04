@@ -14,18 +14,6 @@ public final class ChildrenInput {
     private Double niceScore;
     private List<Category> giftsPreferences;
 
-    public ChildrenInput(Integer id, String lastName, String firstName,
-                         Integer age, Cities city, Double niceScore,
-                         List<Category> giftsPreferences) {
-        this.id = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.age = age;
-        this.city = city;
-        this.niceScore = niceScore;
-        this.giftsPreferences = giftsPreferences;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -84,14 +72,14 @@ public final class ChildrenInput {
 
     @Override
     public String toString() {
-        return "ChildrenInput{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                ", niceScore=" + niceScore +
-                ", giftsPreferences=" + giftsPreferences +
+        return "\nChildrenInput{" +
+                "\nid=" + id +
+                ",\n lastName='" + lastName + '\'' +
+                ",\n firstName='" + firstName + '\'' +
+                ",\n age=" + age +
+                ",\n city='" + city + '\'' +
+                ",\n niceScore=" + niceScore +
+                ",\n giftsPreferences=" + giftsPreferences +
                 '}';
     }
 }

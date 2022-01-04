@@ -9,15 +9,6 @@ public final class AnnualChanges {
     private List<ChildrenInput> newChildren;
     private List<ChildUpdateInput> childrenUpdates;
 
-    public AnnualChanges(Double newSantaBudget, List<SantaGiftsListInput> newGifts,
-                         List<ChildrenInput> newChildren,
-                         List<ChildUpdateInput> childrenUpdates) {
-        this.newSantaBudget = newSantaBudget;
-        this.newGifts = newGifts;
-        this.newChildren = newChildren;
-        this.childrenUpdates = childrenUpdates;
-    }
-
     public Double getNewSantaBudget() {
         return newSantaBudget;
     }
@@ -48,5 +39,15 @@ public final class AnnualChanges {
 
     public void setChildrenUpdates(List<ChildUpdateInput> childrenUpdates) {
         this.childrenUpdates = childrenUpdates;
+    }
+
+    @Override
+    public String toString() {
+        return "\nAnnualChanges{" +
+                "\nnewSantaBudget=" + newSantaBudget +
+                ",\n newGifts=" + newGifts +
+                ",\n newChildren=" + newChildren +
+                ",\n childrenUpdates=" + childrenUpdates +
+                '}';
     }
 }

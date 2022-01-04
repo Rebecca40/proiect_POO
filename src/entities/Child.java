@@ -6,6 +6,7 @@ import enums.Category;
 import enums.Cities;
 import factories.ScoreStrategyFactory;
 import input.ChildrenInput;
+import interfaces.ScoreStrategy;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,7 +18,7 @@ public class Child {
     private String firstName;
     private Cities city;
     private Integer age;
-    private List<Category> giftsPreference;
+    private List<Category> giftsPreferences;
     private Double averageScore;
     private List<Double> niceScoreHistory;
     private Double assignedBudget;
@@ -28,13 +29,13 @@ public class Child {
 //    private S
 
     public Child(Integer id, String lastName, String firstName, Cities city,
-                 Integer age, List<Category> giftsPreference, Double niceScore) {
+                 Integer age, List<Category> giftsPreferences, Double niceScore) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.city = city;
         this.age = age;
-        this.giftsPreference = giftsPreference;
+        this.giftsPreferences = giftsPreferences;
         this.niceScore = niceScore;
         niceScoreHistory = new ArrayList<>();
         receivedGifts = new ArrayList<>();
@@ -46,22 +47,14 @@ public class Child {
         firstName = childInput.getFirstName();
         city = childInput.getCity();
         age = childInput.getAge();
-        giftsPreference = childInput.getGiftsPreferences();
+        giftsPreferences = childInput.getGiftsPreferences();
+        niceScore = childInput.getNiceScore();
         niceScoreHistory = new ArrayList<>();
         receivedGifts = new ArrayList<>();
     }
 
-    private void getagecategory_computeStrategy(List<Child> children) {
-//        ScoreStrategyFactory scoreStrategyFactory = ScoreStrategyFactory(); //.getInstance();
-//        ScoreStrategy strategy = scoreStrategyFactory.createStrategy("baby", children);
-//        ScoreStrategy strategy = scoreStrategyFactory.createStrategy("baby", children);
-//        ScoreStrategy strategy = scoreStrategyFactory.createStrategy("baby", children);
-
-//        strategy.chooseProducers();
-    }
-
     /**
-     *  Determins the age category of each child
+     *  Determine the age category of each child
      */
     public void determineAgeCategory() {
         if (age < 5) {
@@ -74,9 +67,10 @@ public class Child {
     }
 
     public void updateNiceScoreList () {
-        if (niceScore == null) {
-            System.out.println("Nice socre ul nu poate fi null");
-        }
+//        if (niceScore == null) {
+//            System.out.println("Nice socre ul nu poate fi null");
+//        }
+//        this.niceScore = niceScore;
         niceScoreHistory.add(niceScore);
     }
 
@@ -120,12 +114,12 @@ public class Child {
         this.age = age;
     }
 
-    public List<Category> getGiftsPreference() {
-        return giftsPreference;
+    public List<Category> getGiftsPreferences() {
+        return giftsPreferences;
     }
 
-    public void setGiftsPreference(List<Category> giftsPreference) {
-        this.giftsPreference = giftsPreference;
+    public void setGiftsPreferences(List<Category> giftsPreferences) {
+        this.giftsPreferences = giftsPreferences;
     }
 
     public Double getAverageScore() {
@@ -168,20 +162,29 @@ public class Child {
         this.ageCategory = ageCategory;
     }
 
+    public Double getNiceScore() {
+        return niceScore;
+    }
+
+    public void setNiceScore(Double niceScore) {
+        this.niceScore = niceScore;
+    }
+
     @Override
     public String toString() {
-        return "Child{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", city=" + city +
-                ", age=" + age +
-                ", giftsPreference=" + giftsPreference +
-                ", averageScore=" + averageScore +
-                ", niceScoreHistory=" + niceScoreHistory +
-                ", assignedBudget=" + assignedBudget +
-                ", receivedGifts=" + receivedGifts +
-                ", ageCategory='" + ageCategory + '\'' +
+        return "\nChild{" +
+                "\nid=" + id +
+                ",\n lastName='" + lastName + '\'' +
+                ",\n firstName='" + firstName + '\'' +
+                ",\n city=" + city +
+                ",\n age=" + age +
+                ",\n giftsPreferences=" + giftsPreferences +
+                ",\n averageScore=" + averageScore +
+                ",\n niceScoreHistory=" + niceScoreHistory +
+                ",\n assignedBudget=" + assignedBudget +
+                ",\n receivedGifts=" + receivedGifts +
+                ",\n ageCategory='" + ageCategory + '\'' +
+                ",\n niceScore=" + niceScore +
                 '}';
     }
 }

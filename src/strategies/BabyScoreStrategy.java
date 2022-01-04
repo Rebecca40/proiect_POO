@@ -18,6 +18,10 @@ public class BabyScoreStrategy implements ScoreStrategy {
     // presupun ca lista de copii este ordonata in functie de id
     @Override
     public void computeAverageScore() {
-        children.get(childId).setAverageScore(10.0);
+        for (Child child : children) {
+            if (child.getId() == childId) {
+                child.setAverageScore(10.0);
+            }
+        }
     }
 }

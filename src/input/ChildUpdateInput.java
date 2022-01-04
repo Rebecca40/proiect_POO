@@ -9,12 +9,6 @@ public final class ChildUpdateInput {
     private Double niceScore;
     private List<Category> giftsPreferences;
 
-    public ChildUpdateInput(Integer id, Double niceScore, List<Category> giftsPreferences) {
-        this.id = id;
-        this.niceScore = niceScore;
-        this.giftsPreferences = giftsPreferences;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -41,10 +35,10 @@ public final class ChildUpdateInput {
 
     @Override
     public String toString() {
-        return "ChildUpdateInput{" +
-                "id=" + id +
-                ", niceScore=" + niceScore +
-                ", giftsPreferences=" + giftsPreferences +
+        return "\nChildUpdateInput{" +
+                "\nid=" + id +
+                ", \nniceScore=" + niceScore +
+                ", \ngiftsPreferences=" + giftsPreferences +
                 '}';
     }
 }

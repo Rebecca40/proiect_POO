@@ -6,11 +6,6 @@ public final class InitialData {
     private List<ChildrenInput> children;
     private List<SantaGiftsListInput> santaGiftsList;
 
-    public InitialData(List<ChildrenInput> children, List<SantaGiftsListInput> santaGiftsList) {
-        this.children = children;
-        this.santaGiftsList = santaGiftsList;
-    }
-
     public List<ChildrenInput> getChildren() {
         return children;
     }
@@ -29,9 +24,9 @@ public final class InitialData {
 
     @Override
     public String toString() {
-        return "InitialData{" +
-                "children=" + children +
-                ", santaGiftsList=" + santaGiftsList +
+        return "\nInitialData{" +
+                "\nchildren=" + children +
+                ",\n santaGiftsList=" + santaGiftsList +
                 '}';
     }
 }

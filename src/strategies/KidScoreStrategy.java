@@ -21,13 +21,15 @@ public class KidScoreStrategy implements ScoreStrategy {
      */
     @Override
     public void computeAverageScore() {
-        double average = 0.0;
-
-        for (double score : children.get(childId).getNiceScoreHistory()) {
-            average += score;
+        for (Child child : children) {
+            if (child.getId() == childId) {
+                double average = 0.0;
+                for (double score : child.getNiceScoreHistory()) {
+                    average += score;
+                }
+                average /= child.getNiceScoreHistory().size();
+                child.setAverageScore(average);
+            }
         }
-
-        average /= children.get(childId).getNiceScoreHistory().size();
-        children.get(childId).setAverageScore(average);
     }
 }
