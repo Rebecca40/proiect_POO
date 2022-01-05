@@ -184,7 +184,7 @@ public final class Simulation {
 
              for (Category giftCategory : child.getGiftsPreferences()) {
                  /* Get all the gifts from the given category */
-                 List<Gifts> allGiftsFromCategory = santa.getCategotyGiftsList(giftCategory);
+                 List<Gifts> allGiftsFromCategory = santa.getCategoryGiftsList(giftCategory);
 
                  /*
                  * The first gift from the list is the gift that will be given to the child

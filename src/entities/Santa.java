@@ -11,7 +11,7 @@ public final class Santa {
     private Double santaBudget;
     private List<Gifts> santaGiftsList;
 
-    public Santa(Double santaBudget, List<Gifts> santaGiftsList) {
+    public Santa(final Double santaBudget, final List<Gifts> santaGiftsList) {
         this.santaBudget = santaBudget;
         this.santaGiftsList = santaGiftsList;
     }
@@ -22,7 +22,7 @@ public final class Santa {
      * @param category needed category
      * @return sorted gifts list
      */
-    public List<Gifts> getCategotyGiftsList(Category category) {
+    public List<Gifts> getCategoryGiftsList(final Category category) {
         List<Gifts> allGiftsFromCategory = new ArrayList<>();
         for (Gifts gift : santaGiftsList) {
             if (gift.getCategory().equals(category)) {
@@ -37,7 +37,7 @@ public final class Santa {
      * @param gifts list needs sorting
      * @return sorted list
      */
-    public List<Gifts> sortGiftsByPrice (List<Gifts> gifts) {
+    public List<Gifts> sortGiftsByPrice(final List<Gifts> gifts) {
         return gifts.stream().sorted(Comparator.comparingDouble(Gifts::getPrice))
                 .collect(Collectors.toList());
     }
@@ -46,7 +46,7 @@ public final class Santa {
         return santaGiftsList;
     }
 
-    public void setSantaGiftsList(List<Gifts> santaGiftsList) {
+    public void setSantaGiftsList(final List<Gifts> santaGiftsList) {
         this.santaGiftsList = santaGiftsList;
     }
 
@@ -54,7 +54,7 @@ public final class Santa {
         return santaBudget;
     }
 
-    public void setSantaBudget(Double santaBudget) {
+    public void setSantaBudget(final Double santaBudget) {
         this.santaBudget = santaBudget;
     }
 }

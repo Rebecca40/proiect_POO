@@ -29,8 +29,8 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
         for (int i = 1; i <= Constants.TESTS_NUMBER; i++) {
             ObjectMapper objectMapper = new ObjectMapper();
-            Input inputData = objectMapper.readValue
-                    (new File(Constants.TESTS_PATH + i + Constants.FILE_EXTENSION), Input.class);
+            Input inputData = objectMapper.readValue(
+                    new File(Constants.TESTS_PATH + i + Constants.FILE_EXTENSION), Input.class);
 
             Simulation simulation = new Simulation(inputData);
             simulation.simulateAllRounds();
@@ -45,8 +45,8 @@ public final class Main {
 
             objectMapper = new ObjectMapper();
             ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
-            objectWriter.writeValue(new File
-                    (Constants.OUTPUT_PATH + i + Constants.FILE_EXTENSION), outputData);
+            objectWriter.writeValue(new File(
+                    Constants.OUTPUT_PATH + i + Constants.FILE_EXTENSION), outputData);
         }
         Checker.calculateScore();
     }

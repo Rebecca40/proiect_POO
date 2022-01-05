@@ -7,11 +7,14 @@ public final class Gifts {
     private Double price;
     private Category category;
 
+    public Gifts() {
+    }
+
     public String getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(final String productName) {
         this.productName = productName;
     }
 
@@ -19,7 +22,7 @@ public final class Gifts {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(final Double price) {
         this.price = price;
     }
 
@@ -27,7 +30,7 @@ public final class Gifts {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(final Category category) {
         this.category = category;
     }
 }
