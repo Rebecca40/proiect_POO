@@ -1,15 +1,17 @@
 package entities;
 
+import enums.Category;
+
 public final class Gifts {
     private String productName;
     private Double price;
-    private String category;
+    private Category category;
 
-    public Gifts(String productName, Double price, String category) {
-        this.productName = productName;
-        this.price = price;
-        this.category = category;
-    }
+//    public Gifts(String productName, Double price, String category) {
+//        this.productName = productName;
+//        this.price = price;
+//        this.category = category;
+//    }
 
     public String getProductName() {
         return productName;
@@ -27,11 +29,11 @@ public final class Gifts {
         this.price = price;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }

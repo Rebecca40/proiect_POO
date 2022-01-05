@@ -3,7 +3,7 @@ package input;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class AnnualChanges {
+public final class AnnualChangesInput {
     private Double newSantaBudget;
     private List<SantaGiftsListInput> newGifts;
     private List<ChildrenInput> newChildren;

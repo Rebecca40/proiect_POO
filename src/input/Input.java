@@ -6,7 +6,7 @@ public final class Input {
     private Integer numberOfYears;
     private Double santaBudget;
     private InitialData initialData;
-    private List<AnnualChanges> annualChanges;
+    private List<AnnualChangesInput> annualChanges;
 
 //    public Input(Integer numberOfYears, Double santaBudget, InitialData initialData,
 //                 List<AnnualChanges> annualChanges) {
@@ -48,11 +48,11 @@ public final class Input {
         this.initialData = initialData;
     }
 
-    public List<AnnualChanges> getAnnualChanges() {
+    public List<AnnualChangesInput> getAnnualChanges() {
         return annualChanges;
     }
 
-    public void setAnnualChanges(List<AnnualChanges> annualChanges) {
+    public void setAnnualChanges(List<AnnualChangesInput> annualChanges) {
         this.annualChanges = annualChanges;
     }
 

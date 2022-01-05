@@ -35,6 +35,7 @@ public final class Constants {
     public static final String KID = "kid";
     public static final String BABY = "baby";
     public static final String TEEN = "teen";
+    public static final int CHEAPEST_GIFT = 0;
 
     private Constants() {
         //constructor for checkstyle

@@ -1,9 +1,12 @@
 package simulation;
 
+import common.Constants;
 import entities.Child;
+import entities.Gifts;
 import entities.Santa;
+import enums.Category;
 import factories.ScoreStrategyFactory;
-import input.AnnualChanges;
+import input.AnnualChangesInput;
 import input.ChildrenInput;
 import input.Input;
 import interfaces.ScoreStrategy;
@@ -24,7 +27,7 @@ public final class Simulation {
      */
      List<List<Child>> rounds;
 
-     List<AnnualChanges> annualChanges;
+     List<AnnualChangesInput> annualChanges;
 
      Santa santa;
 
@@ -39,13 +42,14 @@ public final class Simulation {
 
          annualChanges = input.getAnnualChanges();
 
-         santa = new Santa(input.getSantaBudget());
+         santa = new Santa(input.getSantaBudget(),
+                 input.getInitialData().getSantaGiftsList());
      }
 
     public void simulateAllRounds () {
         initialRound();
         rounds.add(allChildren);
-        for (AnnualChanges annualChange : annualChanges) {
+        for (AnnualChangesInput annualChange : annualChanges) {
             basicRound(annualChange);
             rounds.add(allChildren);
         }
@@ -54,11 +58,8 @@ public final class Simulation {
 
      public void initialRound () {
          /* Remove all children 18+ */
-         System.out.println(allChildren.size());
-
          allChildren.removeIf(child -> child.getAge() > 18);
 
-//         System.out.println(allChildren.size());
          /* Determine age category for each child from the current round */
          allChildren.forEach(Child::determineAgeCategory);
 
@@ -66,7 +67,6 @@ public final class Simulation {
 
          /* Compute average score for each child */
          ScoreStrategyFactory scoreStrategyFactory = ScoreStrategyFactory.getInstance();
-
          for (Child child : allChildren) {
              ScoreStrategy strategy = scoreStrategyFactory.createStrategy(child, allChildren);
 
@@ -76,12 +76,47 @@ public final class Simulation {
 
          calculateBudget();
 
-
+         distributeGifts();
 
      }
 
-     public void basicRound(final AnnualChanges annualChange) {
+     public void basicRound(final AnnualChangesInput annualChange) {
+//         for (Child child : allChildren) {
+//             if (!child.getReceivedGifts().isEmpty()) {
+//                 child.getReceivedGifts().clear();
+//             }
+//         }
+     }
 
+
+     public void distributeGifts() {
+         for (Child child : allChildren) {
+             Double childBudget = child.getAssignedBudget();
+
+//             if (!child.getReceivedGifts().isEmpty()) {
+//                 child.getReceivedGifts().clear();
+//             }
+
+             for (Category giftCategory : child.getGiftsPreferences()) {
+                 /* Get all the gifts from the given category */
+                 List<Gifts> allGiftsFromCategory = santa.getCategotyGiftsList(giftCategory);
+
+                 /*
+                 * The first gift from the list is the gift that will be given to the child
+                 * If the list is empty then santa doesn't have a gift from the given category
+                 */
+                 if (!allGiftsFromCategory.isEmpty()) {
+                     Double giftPrice = allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getPrice();
+
+                     /* Check if the gift doesn't exceed the child's budget*/
+                     if (childBudget - giftPrice >= 0) {
+                         child.getReceivedGifts()
+                                 .add(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT));
+                         childBudget -= giftPrice;
+                     }
+                 }
+             }
+         }
      }
 
     /**
@@ -97,7 +132,9 @@ public final class Simulation {
 
          for (Child child : allChildren) {
              child.setAssignedBudget(budgetUnit * child.getAverageScore());
+             System.out.println(child.getFirstName() + " " + child.getAssignedBudget());
          }
+
      }
 
     public List<Child> getAllChildren() {
