@@ -28,16 +28,18 @@ public class Child {
 
 //    private S
 
-    public Child(Integer id, String lastName, String firstName, Cities city,
-                 Integer age, List<Category> giftsPreferences, Double niceScore) {
-        this.id = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.city = city;
-        this.age = age;
-        this.giftsPreferences = giftsPreferences;
-        this.niceScore = niceScore;
-        niceScoreHistory = new ArrayList<>();
+    public Child(Child child) {
+        this.id = child.id;
+        this.lastName = child.lastName;
+        this.firstName = child.firstName;
+        this.city = child.city;
+        this.age = child.age;
+        this.giftsPreferences = child.giftsPreferences;
+        this.niceScore = child.niceScore;
+        this.ageCategory = new String(child.ageCategory);
+        this.niceScoreHistory = new ArrayList<>();
+        this.niceScoreHistory.addAll(child.getNiceScoreHistory());
+
         receivedGifts = new ArrayList<>();
     }
 
@@ -50,6 +52,7 @@ public class Child {
         giftsPreferences = childInput.getGiftsPreferences();
         niceScore = childInput.getNiceScore();
         niceScoreHistory = new ArrayList<>();
+        niceScoreHistory.add(niceScore);
         receivedGifts = new ArrayList<>();
     }
 
@@ -66,12 +69,20 @@ public class Child {
         }
     }
 
-    public void updateNiceScoreList () {
-//        if (niceScore == null) {
+    public void updateNiceScoreHistory () {
+        if (niceScore == null) {
+            niceScoreHistory.add(niceScore);
+
 //            System.out.println("Nice socre ul nu poate fi null");
-//        }
+        }
 //        this.niceScore = niceScore;
-        niceScoreHistory.add(niceScore);
+    }
+
+    /**
+     * Increase age with one
+     */
+    public void increaseAge() {
+        age++;
     }
 
     public Integer getId() {

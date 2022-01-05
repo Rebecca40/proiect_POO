@@ -34,8 +34,8 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
 
 //        Input inputData = objectMapper.readValue(new File("tests/test1.json"), Input.class);
-
-        for (int i = 1; i <= Constants.TESTS_NUMBER; i++) {
+//        Constants.TESTS_NUMBER
+        for (int i = 1; i <= 25; i++) {
             ObjectMapper objectMapper = new ObjectMapper();
             Input inputData = objectMapper.readValue
                     (new File(Constants.TESTS_PATH + i + Constants.FILE_EXTENSION), Input.class);
@@ -44,7 +44,7 @@ public final class Main {
 //            List<List<Child>> children = simulation.getRounds();
 
             /* Write output in file */
-            OutputData outputData = new OutputData(simulation.getRounds());
+            OutputData outputData = new OutputData(simulation.getAllRoundsChildren());
             Path path = Paths.get(Constants.OUT_PATH);
 
             if (!Files.exists(path)) {
@@ -70,6 +70,6 @@ public final class Main {
 //        children.get(0).get(0).getReceivedGifts().add(giift2);
 
 
-//        Checker.calculateScore();
+        Checker.calculateScore();
     }
 }

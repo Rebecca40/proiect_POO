@@ -1,11 +1,13 @@
 package input;
 
+import entities.Gifts;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public final class AnnualChangesInput {
     private Double newSantaBudget;
-    private List<SantaGiftsListInput> newGifts;
+    private List<Gifts> newGifts;
     private List<ChildrenInput> newChildren;
     private List<ChildUpdateInput> childrenUpdates;
 
@@ -17,11 +19,11 @@ public final class AnnualChangesInput {
         this.newSantaBudget = newSantaBudget;
     }
 
-    public List<SantaGiftsListInput> getNewGifts() {
+    public List<Gifts> getNewGifts() {
         return newGifts;
     }
 
-    public void setNewGifts(List<SantaGiftsListInput> newGifts) {
+    public void setNewGifts(List<Gifts> newGifts) {
         this.newGifts = newGifts;
     }
 
