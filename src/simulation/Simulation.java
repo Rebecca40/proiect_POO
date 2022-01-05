@@ -6,13 +6,14 @@ import entities.Gifts;
 import entities.Santa;
 import enums.Category;
 import factories.ScoreStrategyFactory;
-import input.*;
+import input.AnnualChangesInput;
+import input.ChildUpdateInput;
+import input.ChildrenInput;
+import input.Input;
 import interfaces.ScoreStrategy;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,20 +22,23 @@ public final class Simulation {
      *  List in which I keep all the children that
      *  received gifts from the current round
      */
-     List<Child> currentRoundChildren;
+     private List<Child> currentRoundChildren;
 
      /*
      *  List in which I keep a list of all the children
      *  that received gifts at each round
      */
-     List<List<Child>> allRoundsChildren;
+     private List<List<Child>> allRoundsChildren;
 
-     List<AnnualChangesInput> annualChanges;
+     private List<AnnualChangesInput> annualChanges;
 
-     Santa santa;
+     private Santa santa;
 
-     public Simulation (final Input input) {
-         allRoundsChildren = new ArrayList<>(input.getNumberOfYears() + 1);
+     private Integer numberOfYears;
+
+     public Simulation(final Input input) {
+         allRoundsChildren = new ArrayList<>();
+         numberOfYears = input.getNumberOfYears();
 
          currentRoundChildren = new ArrayList<>();
          for (ChildrenInput child : input.getInitialData().getChildren()) {
@@ -43,52 +47,37 @@ public final class Simulation {
          }
 
          annualChanges = input.getAnnualChanges();
-
          santa = new Santa(input.getSantaBudget(),
                  input.getInitialData().getSantaGiftsList());
      }
 
-    public void simulateAllRounds () {
-        currentRoundChildren.removeIf(child -> child.getAge() > 18);
+    /**
+     *  Execute the initial round and then execute numberOfYears basic rounds
+     */
+    public void simulateAllRounds() {
+        /* Remove all children 18+ */
+        currentRoundChildren.removeIf(child -> child.getAge() > Constants.TEEN_MAX_AGE);
         initialRound();
         allRoundsChildren.add(currentRoundChildren);
-//        System.out.println(currentRoundChildren);
-//
-        for (AnnualChangesInput annualChange : annualChanges) {
-//            System.out.println(annualChange);
-            basicRound(annualChange);
-//            System.out.println(currentRoundChildren);
-//            List<Child> subjects = new ArrayList<>();
-//            for (Child subject : currentRoundChildren) {
-//                subjects.add(new Child(subject));
-//            }
+
+        for (int i = 0; i < numberOfYears; i++) {
+            basicRound(annualChanges.get(i));
             allRoundsChildren.add(currentRoundChildren);
         }
-//        System.out.println(allRoundsChildren);
-//        System.out.println(allRoundsChildren.size());
-//        allRoundsChildren.add(currentRoundChildren);
-
-
-
-//        System.out.println(allRoundsChildren.get(0));
-//        System.out.println(allRoundsChildren.get(1));
-//        System.out.println();
-
     }
 
-     public void initialRound () {
-         /* Remove all children 18+ */
-         currentRoundChildren.removeIf(child -> child.getAge() > 18);
-
+    /**
+     * The initial round of the simulation
+     */
+    public void initialRound() {
          /* Determine age category for each child from the current round */
          currentRoundChildren.forEach(Child::determineAgeCategory);
-
-//         currentRoundChildren.forEach(Child::updateNiceScoreHistory);
 
          /* Compute average score for each child */
          ScoreStrategyFactory scoreStrategyFactory = ScoreStrategyFactory.getInstance();
          for (Child child : currentRoundChildren) {
-             ScoreStrategy strategy = scoreStrategyFactory.createStrategy(child, currentRoundChildren);
+             ScoreStrategy strategy =
+                     scoreStrategyFactory.createStrategy(child, currentRoundChildren);
 
              assert strategy != null;
              strategy.computeAverageScore();
@@ -99,42 +88,37 @@ public final class Simulation {
          distributeGifts();
      }
 
+    /**
+     * The basic round of the simulation
+     * @param annualChange input for each annual change
+     */
      public void basicRound(final AnnualChangesInput annualChange) {
          List<ChildrenInput> newChildren = annualChange.getNewChildren();
          List<ChildUpdateInput> childrenUpdates = annualChange.getChildrenUpdates();
          List<Gifts> newGifts = annualChange.getNewGifts();
-         List<Child> a = new ArrayList<>();
+
+         List<Child> copyChildList = new ArrayList<>();
          for (Child child : currentRoundChildren) {
              Child currentChild = new Child(child);
-             a.add(currentChild);
+             copyChildList.add(currentChild);
          }
-//         System.out.println("a = "+ a.get(0).getAge());
-//
-//         System.out.println("b = "+ currentRoundChildren.get(0).getAge());
-         currentRoundChildren = a;
+         currentRoundChildren = copyChildList;
 
+         /* Increase the age of each child */
          currentRoundChildren.forEach(Child::increaseAge);
-
-
-//         System.out.println(a);
-
-//         a.get(0).setAge(6);
-//         System.out.println("a = "+ a.get(0).getAge());
-
-//         System.out.println(a);
-//         System.out.println("b = "+currentRoundChildren.get(0).getAge());
 
          for (ChildrenInput child : newChildren) {
              Integer age = child.getAge();
-             if (age <= 18) {
+             if (age <= Constants.TEEN_MAX_AGE) {
                  Child currentChild = new Child(child);
                  currentRoundChildren.add(currentChild);
              }
          }
 
          /* Remove all children 18+ */
-         currentRoundChildren.removeIf(child -> child.getAge() > 18);
+         currentRoundChildren.removeIf(child -> child.getAge() > Constants.TEEN_MAX_AGE);
 
+         /* Update the children information */
          for (ChildUpdateInput childUpdate : childrenUpdates) {
              for (Child child : currentRoundChildren) {
                  /* Check if the id matches */
@@ -150,12 +134,28 @@ public final class Simulation {
                       *  of the child's gifts preferences list
                       */
                      if (childUpdate.getGiftsPreferences() != null) {
-                         List<Category> newList =
-                                 Stream.concat(childUpdate.getGiftsPreferences().stream(),
-                                                 child.getGiftsPreferences().stream())
-                                         .collect(Collectors.toList());
 
-                             child.setGiftsPreferences(newList);
+                         /*
+                          *  Create a list of new gifts preferences that
+                          *  doesn't have duplicates of categories
+                         */
+                        List<Category> giftsPreferencesNoDuplicates = new ArrayList<>();
+                        for (Category category : childUpdate.getGiftsPreferences()) {
+                            if (!giftsPreferencesNoDuplicates.contains(category)) {
+                                giftsPreferencesNoDuplicates.add(category);
+                            }
+                        }
+
+                         List<Category> copyGiftsPreferences =
+                                 new ArrayList<>(child.getGiftsPreferences());
+
+                         copyGiftsPreferences
+                                 .removeIf(giftsPreferencesNoDuplicates::contains);
+
+                             child.setGiftsPreferences(Stream
+                                     .concat(giftsPreferencesNoDuplicates.stream(),
+                                             copyGiftsPreferences.stream())
+                                     .collect(Collectors.toList()));
                      }
                  }
              }
@@ -171,7 +171,10 @@ public final class Simulation {
          initialRound();
      }
 
-     public void distributeGifts() {
+    /**
+     *  Distributes gifts to each child according to their gifts preferences
+     */
+    public void distributeGifts() {
          for (Child child : currentRoundChildren) {
              Double childBudget = child.getAssignedBudget();
 
@@ -188,7 +191,8 @@ public final class Simulation {
                  * If the list is empty then santa doesn't have a gift from the given category
                  */
                  if (!allGiftsFromCategory.isEmpty()) {
-                     Double giftPrice = allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getPrice();
+                     Double giftPrice =
+                             allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getPrice();
 
                      /* Check if the gift doesn't exceed the child's budget*/
                      if (childBudget - giftPrice >= 0) {
@@ -202,7 +206,7 @@ public final class Simulation {
      }
 
     /**
-     *  Calculate the buget assigned for each child
+     *  Calculate the budget assigned for each child
      */
     public void calculateBudget() {
          Double averageScoreSum = 0.0;
@@ -215,11 +219,14 @@ public final class Simulation {
          for (Child child : currentRoundChildren) {
              child.setAssignedBudget(budgetUnit * child.getAverageScore());
          }
-
      }
 
-    public List<Child> getCcurrentRoundChildren() {
-        return currentRoundChildren;
+    public List<AnnualChangesInput> getAnnualChanges() {
+        return annualChanges;
+    }
+
+    public Integer getNumberOfYears() {
+        return numberOfYears;
     }
 
     public List<List<Child>> getAllRoundsChildren() {

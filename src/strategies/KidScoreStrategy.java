@@ -5,19 +5,18 @@ import interfaces.ScoreStrategy;
 
 import java.util.List;
 
-public class KidScoreStrategy implements ScoreStrategy {
-    private List<Child> children;
-    private int childId;
+public final class KidScoreStrategy implements ScoreStrategy {
+    private final List<Child> children;
+    private final int childId;
 
-    public KidScoreStrategy(List<Child> children, int childId) {
+    public KidScoreStrategy(final List<Child> children, final int childId) {
         this.children = children;
         this.childId = childId;
     }
 
 
-    // am presupun ca lista de scoruri nu este niciodata goala pt ca e tarziu si inca nu am cautat
     /*
-       For kids the average score is given by the arithmetic sum of the nice socres
+       For kids the average score is given by the arithmetic sum of the nice scores
      */
     @Override
     public void computeAverageScore() {

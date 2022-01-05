@@ -1,18 +1,14 @@
 package entities;
 
 import common.Constants;
-import entities.Gifts;
 import enums.Category;
 import enums.Cities;
-import factories.ScoreStrategyFactory;
 import input.ChildrenInput;
-import interfaces.ScoreStrategy;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class Child {
+public final class Child {
     private Integer id;
     private String lastName;
     private String firstName;
@@ -26,8 +22,6 @@ public class Child {
     private String ageCategory;
     private Double niceScore;
 
-//    private S
-
     public Child(Child child) {
         this.id = child.id;
         this.lastName = child.lastName;
@@ -36,10 +30,9 @@ public class Child {
         this.age = child.age;
         this.giftsPreferences = child.giftsPreferences;
         this.niceScore = child.niceScore;
-        this.ageCategory = new String(child.ageCategory);
+        this.ageCategory = child.ageCategory;
         this.niceScoreHistory = new ArrayList<>();
         this.niceScoreHistory.addAll(child.getNiceScoreHistory());
-
         receivedGifts = new ArrayList<>();
     }
 
@@ -60,26 +53,17 @@ public class Child {
      *  Determine the age category of each child
      */
     public void determineAgeCategory() {
-        if (age < 5) {
+        if (age < Constants.BABY_MAX_AGE) {
             ageCategory = Constants.BABY;
-        } else if (age < 12) {
+        } else if (age < Constants.KID_MAX_AGE) {
             ageCategory = Constants.KID;
-        } else if (age <= 18) {
+        } else if (age <= Constants.TESTS_NUMBER) {
             ageCategory = Constants.TEEN;
         }
     }
 
-    public void updateNiceScoreHistory () {
-        if (niceScore == null) {
-            niceScoreHistory.add(niceScore);
-
-//            System.out.println("Nice socre ul nu poate fi null");
-        }
-//        this.niceScore = niceScore;
-    }
-
     /**
-     * Increase age with one
+     * Increase age
      */
     public void increaseAge() {
         age++;
@@ -179,23 +163,5 @@ public class Child {
 
     public void setNiceScore(Double niceScore) {
         this.niceScore = niceScore;
-    }
-
-    @Override
-    public String toString() {
-        return "\nChild{" +
-                "\nid=" + id +
-                ",\n lastName='" + lastName + '\'' +
-                ",\n firstName='" + firstName + '\'' +
-                ",\n city=" + city +
-                ",\n age=" + age +
-                ",\n giftsPreferences=" + giftsPreferences +
-                ",\n averageScore=" + averageScore +
-                ",\n niceScoreHistory=" + niceScoreHistory +
-                ",\n assignedBudget=" + assignedBudget +
-                ",\n receivedGifts=" + receivedGifts +
-                ",\n ageCategory='" + ageCategory + '\'' +
-                ",\n niceScore=" + niceScore +
-                '}';
     }
 }

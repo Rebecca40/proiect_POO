@@ -1,7 +1,6 @@
 package entities;
 
 import enums.Category;
-import input.SantaGiftsListInput;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -57,13 +56,5 @@ public final class Santa {
 
     public void setSantaBudget(Double santaBudget) {
         this.santaBudget = santaBudget;
-    }
-
-    @Override
-    public String toString() {
-        return "Santa{" +
-                "santaBudget=" + santaBudget +
-                ", santaGiftsList=" + santaGiftsList +
-                '}';
     }
 }

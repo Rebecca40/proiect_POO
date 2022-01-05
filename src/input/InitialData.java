@@ -8,11 +8,14 @@ public final class InitialData {
     private List<ChildrenInput> children;
     private List<Gifts> santaGiftsList;
 
+    public InitialData() {
+    }
+
     public List<ChildrenInput> getChildren() {
         return children;
     }
 
-    public void setChildren(List<ChildrenInput> children) {
+    public void setChildren(final List<ChildrenInput> children) {
         this.children = children;
     }
 
@@ -20,15 +23,7 @@ public final class InitialData {
         return santaGiftsList;
     }
 
-    public void setSantaGiftsList(List<Gifts> santaGiftsList) {
+    public void setSantaGiftsList(final List<Gifts> santaGiftsList) {
         this.santaGiftsList = santaGiftsList;
-    }
-
-    @Override
-    public String toString() {
-        return "\nInitialData{" +
-                "\nchildren=" + children +
-                ",\n santaGiftsList=" + santaGiftsList +
-                '}';
     }
 }

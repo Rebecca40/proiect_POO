@@ -2,7 +2,6 @@ package input;
 
 import entities.Gifts;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public final class AnnualChangesInput {
@@ -11,11 +10,14 @@ public final class AnnualChangesInput {
     private List<ChildrenInput> newChildren;
     private List<ChildUpdateInput> childrenUpdates;
 
+    public AnnualChangesInput() {
+    }
+
     public Double getNewSantaBudget() {
         return newSantaBudget;
     }
 
-    public void setNewSantaBudget(Double newSantaBudget) {
+    public void setNewSantaBudget(final Double newSantaBudget) {
         this.newSantaBudget = newSantaBudget;
     }
 
@@ -23,7 +25,7 @@ public final class AnnualChangesInput {
         return newGifts;
     }
 
-    public void setNewGifts(List<Gifts> newGifts) {
+    public void setNewGifts(final List<Gifts> newGifts) {
         this.newGifts = newGifts;
     }
 
@@ -31,7 +33,7 @@ public final class AnnualChangesInput {
         return newChildren;
     }
 
-    public void setNewChildren(List<ChildrenInput> newChildren) {
+    public void setNewChildren(final List<ChildrenInput> newChildren) {
         this.newChildren = newChildren;
     }
 
@@ -39,17 +41,7 @@ public final class AnnualChangesInput {
         return childrenUpdates;
     }
 
-    public void setChildrenUpdates(List<ChildUpdateInput> childrenUpdates) {
+    public void setChildrenUpdates(final List<ChildUpdateInput> childrenUpdates) {
         this.childrenUpdates = childrenUpdates;
-    }
-
-    @Override
-    public String toString() {
-        return "\nAnnualChanges{" +
-                "\nnewSantaBudget=" + newSantaBudget +
-                ",\n newGifts=" + newGifts +
-                ",\n newChildren=" + newChildren +
-                ",\n childrenUpdates=" + childrenUpdates +
-                '}';
     }
 }

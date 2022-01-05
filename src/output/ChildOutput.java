@@ -19,7 +19,7 @@ public final class ChildOutput {
     private final Double assignedBudget;
     private final List<Gifts> receivedGifts;
 
-    public ChildOutput (final Child childOutput) {
+    public ChildOutput(final Child childOutput) {
         id = childOutput.getId();
         lastName = childOutput.getLastName();
         firstName = childOutput.getFirstName();
@@ -31,7 +31,6 @@ public final class ChildOutput {
         assignedBudget = childOutput.getAssignedBudget();
         receivedGifts = childOutput.getReceivedGifts();
     }
-
 
     public Integer getId() {
         return id;
@@ -71,21 +70,5 @@ public final class ChildOutput {
 
     public List<Gifts> getReceivedGifts() {
         return receivedGifts;
-    }
-
-    @Override
-    public String toString() {
-        return "ChildOutput{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", city=" + city +
-                ", age=" + age +
-                ", giftsPreferences=" + giftsPreferences +
-                ", averageScore=" + averageScore +
-                ", niceScoreHistory=" + niceScoreHistory +
-                ", assignedBudget=" + assignedBudget +
-                ", receivedGifts=" + receivedGifts +
-                '}';
     }
 }

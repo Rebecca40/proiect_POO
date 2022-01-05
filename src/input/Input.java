@@ -8,27 +8,15 @@ public final class Input {
     private InitialData initialData;
     private List<AnnualChangesInput> annualChanges;
 
-//    public Input(Integer numberOfYears, Double santaBudget, InitialData initialData,
-//                 List<AnnualChanges> annualChanges) {
-//        this.numberOfYears = numberOfYears;
-//        this.santaBudget = santaBudget;
-//        this.initialData = initialData;
-//        this.annualChanges = annualChanges;
-//    }
+    public Input() {
 
-//    public Input(InitialData initialData) {
-//        this.initialData = initialData;
-//    }
-//
-//    public Input(List<AnnualChanges> annualChanges) {
-//        this.annualChanges = annualChanges;
-//    }
+    }
 
     public int getNumberOfYears() {
         return numberOfYears;
     }
 
-    public void setNumberOfYears(Integer numberOfYears) {
+    public void setNumberOfYears(final Integer numberOfYears) {
         this.numberOfYears = numberOfYears;
     }
 
@@ -36,7 +24,7 @@ public final class Input {
         return santaBudget;
     }
 
-    public void setSantaBudget(Double santaBudget) {
+    public void setSantaBudget(final Double santaBudget) {
         this.santaBudget = santaBudget;
     }
 
@@ -44,7 +32,7 @@ public final class Input {
         return initialData;
     }
 
-    public void setInitialData(InitialData initialData) {
+    public void setInitialData(final InitialData initialData) {
         this.initialData = initialData;
     }
 
@@ -52,17 +40,7 @@ public final class Input {
         return annualChanges;
     }
 
-    public void setAnnualChanges(List<AnnualChangesInput> annualChanges) {
+    public void setAnnualChanges(final List<AnnualChangesInput> annualChanges) {
         this.annualChanges = annualChanges;
-    }
-
-    @Override
-    public String toString() {
-        return "Input{" +
-                "\nnumberOfYears=" + numberOfYears +
-                ",\n santaBudget=" + santaBudget +
-                ",\n initialData=" + initialData +
-                ",\n annualChanges=" + annualChanges +
-                '}';
     }
 }

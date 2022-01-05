@@ -5,11 +5,11 @@ import interfaces.ScoreStrategy;
 
 import java.util.List;
 
-public class TeenScoreStrategy implements ScoreStrategy {
-    private List<Child> children;
-    private int childId;
+public final class TeenScoreStrategy implements ScoreStrategy {
+    private final List<Child> children;
+    private final int childId;
 
-    public TeenScoreStrategy(List<Child> children, int childId) {
+    public TeenScoreStrategy(final List<Child> children, final int childId) {
         this.children = children;
         this.childId = childId;
     }

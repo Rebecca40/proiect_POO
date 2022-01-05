@@ -9,11 +9,14 @@ public final class ChildUpdateInput {
     private Double niceScore;
     private List<Category> giftsPreferences;
 
+    public ChildUpdateInput() {
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -21,7 +24,7 @@ public final class ChildUpdateInput {
         return niceScore;
     }
 
-    public void setNiceScore(Double niceScore) {
+    public void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
     }
 
@@ -29,16 +32,7 @@ public final class ChildUpdateInput {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(List<Category> giftsPreferences) {
+    public void setGiftsPreferences(final List<Category> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
-    }
-
-    @Override
-    public String toString() {
-        return "\nChildUpdateInput{" +
-                "\nid=" + id +
-                ", \nniceScore=" + niceScore +
-                ", \ngiftsPreferences=" + giftsPreferences +
-                '}';
     }
 }

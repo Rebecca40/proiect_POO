@@ -7,12 +7,6 @@ public final class Gifts {
     private Double price;
     private Category category;
 
-//    public Gifts(String productName, Double price, String category) {
-//        this.productName = productName;
-//        this.price = price;
-//        this.category = category;
-//    }
-
     public String getProductName() {
         return productName;
     }

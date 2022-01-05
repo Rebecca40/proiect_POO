@@ -9,8 +9,7 @@ import strategies.TeenScoreStrategy;
 
 import java.util.List;
 
-public class ScoreStrategyFactory {
-//    private static final ScoreStrategyFactory FACTORY = new ScoreStrategyFactory();
+public final class ScoreStrategyFactory {
     private static ScoreStrategyFactory singleInstance = null;
 
     private ScoreStrategyFactory() {
@@ -21,8 +20,7 @@ public class ScoreStrategyFactory {
      * Create the needed strategy
      * @return new strategy
      */
-    public static ScoreStrategy createStrategy (Child child, List<Child> children) {
-//        for (Child child : children) {
+    public static ScoreStrategy createStrategy(final Child child, final List<Child> children) {
         if (child.getAgeCategory().equals(Constants.BABY)) {
             return new BabyScoreStrategy(children, child.getId());
         } else if (child.getAgeCategory().equals(Constants.KID)) {
@@ -32,13 +30,6 @@ public class ScoreStrategyFactory {
         }
         return null;
     }
-//        if (strategyType.equals(Constants.BABY)) {
-//            return new BabyScoreStrategy(children);
-//        } else if (strategyType.equals(Constants.KID)) {
-//            return new KidScoreStrategy(children);
-//        } else if (strategyType.equals(Constants.TEEN)) {
-//            return new TeenScoreStrategy(children);
-//        }
 
     /**
      * @return the only instance of the class
@@ -47,10 +38,6 @@ public class ScoreStrategyFactory {
         if (singleInstance == null) {
             singleInstance = new ScoreStrategyFactory();
         }
-
         return singleInstance;
     }
-//    public static ScoreStrategyFactory getInstance() {
-//        return FACTORY;
-//    }
 }

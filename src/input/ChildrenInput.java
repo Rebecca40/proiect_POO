@@ -14,11 +14,14 @@ public final class ChildrenInput {
     private Double niceScore;
     private List<Category> giftsPreferences;
 
+    public ChildrenInput() {
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
@@ -26,7 +29,7 @@ public final class ChildrenInput {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -34,7 +37,7 @@ public final class ChildrenInput {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -42,7 +45,7 @@ public final class ChildrenInput {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(final Integer age) {
         this.age = age;
     }
 
@@ -50,7 +53,7 @@ public final class ChildrenInput {
         return city;
     }
 
-    public void setCity(Cities city) {
+    public void setCity(final Cities city) {
         this.city = city;
     }
 
@@ -58,7 +61,7 @@ public final class ChildrenInput {
         return niceScore;
     }
 
-    public void setNiceScore(Double niceScore) {
+    public void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
     }
 
@@ -66,20 +69,7 @@ public final class ChildrenInput {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(List<Category> giftsPreferences) {
+    public void setGiftsPreferences(final List<Category> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
-    }
-
-    @Override
-    public String toString() {
-        return "\nChildrenInput{" +
-                "\nid=" + id +
-                ",\n lastName='" + lastName + '\'' +
-                ",\n firstName='" + firstName + '\'' +
-                ",\n age=" + age +
-                ",\n city='" + city + '\'' +
-                ",\n niceScore=" + niceScore +
-                ",\n giftsPreferences=" + giftsPreferences +
-                '}';
     }
 }
