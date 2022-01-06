@@ -1,6 +1,7 @@
 package simulation;
 
 import common.Constants;
+import database.Database;
 import entities.Child;
 import entities.Santa;
 import factories.ScoreStrategyFactory;
@@ -35,19 +36,16 @@ public final class Simulation {
 
      private final Integer numberOfYears;
 
-     public Simulation(final Input input) {
+    private final Database database;
+
+    public Simulation(final Input input) {
+         database = Database.getDatabase();
+         database.init(input);
+         currentRoundChildren = database.getCurrentRoundChildren();
+         annualChanges = database.getAnnualChanges();
+         santa = database.getSanta();
+         numberOfYears = database.getNumberOfYears();
          allRoundsChildren = new ArrayList<>();
-         numberOfYears = input.getNumberOfYears();
-
-         currentRoundChildren = new ArrayList<>();
-         for (ChildrenInput child : input.getInitialData().getChildren()) {
-             Child currentChild = new Child(child);
-             currentRoundChildren.add(currentChild);
-         }
-
-         annualChanges = input.getAnnualChanges();
-         santa = new Santa(input.getSantaBudget(),
-                 input.getInitialData().getSantaGiftsList());
      }
 
     /**
@@ -74,10 +72,9 @@ public final class Simulation {
          currentRoundChildren.forEach(Child::determineAgeCategory);
 
          /* Compute average score for each child */
-         ScoreStrategyFactory scoreStrategyFactory = ScoreStrategyFactory.getInstance();
          for (Child child : currentRoundChildren) {
              ScoreStrategy strategy =
-                     scoreStrategyFactory.createStrategy(child, currentRoundChildren);
+                     ScoreStrategyFactory.createStrategy(child, currentRoundChildren);
 
              assert strategy != null;
              strategy.computeAverageScore();
@@ -145,5 +142,9 @@ public final class Simulation {
 
     public List<List<Child>> getAllRoundsChildren() {
         return allRoundsChildren;
+    }
+
+    public Database getDatabase() {
+        return database;
     }
 }
