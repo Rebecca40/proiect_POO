@@ -4,8 +4,8 @@ import checker.Checker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import common.Constants;
-import input.Input;
-import output.OutputData;
+import fileio.input.Input;
+import fileio.output.OutputData;
 import simulation.Simulation;
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public final class Main {
             Simulation simulation = new Simulation(inputData);
             simulation.simulateAllRounds();
 
-            /* Write output in file */
+            /* Write fileio.output in file */
             OutputData outputData = new OutputData(simulation.getAllRoundsChildren());
             Path path = Paths.get(Constants.OUT_PATH);
 

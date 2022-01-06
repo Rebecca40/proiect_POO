@@ -1,4 +1,4 @@
-package output;
+package fileio.output;
 
 import entities.Child;
 import entities.Gifts;

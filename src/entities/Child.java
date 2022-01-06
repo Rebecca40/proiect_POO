@@ -3,7 +3,7 @@ package entities;
 import common.Constants;
 import enums.Category;
 import enums.Cities;
-import input.ChildrenInput;
+import fileio.input.ChildrenInput;
 
 import java.util.ArrayList;
 import java.util.List;

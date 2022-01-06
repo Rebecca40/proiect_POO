@@ -49,7 +49,8 @@ public final class Checker {
     /**
      * This method calculates the score of only one single test
      *
-     * It compares the /output/out_{testNumber}.json file with the /ref/ref_test{testNumber}.json
+     * It compares the /fileio.output/out_{testNumber}.json file
+     * with the /ref/ref_test{testNumber}.json
      *
      * @param testNumber
      *          the testNumber you want to calculate score for
@@ -70,7 +71,8 @@ public final class Checker {
     }
 
     /**
-     * It compares the /output/out_{testNumber}.json file with the /ref/ref_test{testNumber}.json
+     * It compares the /fileio.output/out_{testNumber}.json file
+     * with the /ref/ref_test{testNumber}.json
      *
      * @param testNumber
      *          the testNumber you want to calculate score for
