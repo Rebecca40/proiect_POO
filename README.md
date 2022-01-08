@@ -81,7 +81,7 @@ the different strategies.
    * Kid: 5 - 12 years old
    * Teen: 12 - 18 years old
    * Young Adult: > 18 years old
-2. For each child store in a list the nice score for each child
+2. For each child store in a list their nice score
 3. Compute average score based on the age category of each child
     * Baby: average score is always  10
     * Kid:  average score is the average of all the nice scores from the
@@ -109,7 +109,7 @@ the different strategies.
 2. Santa reads the updates list from the current round:
    * adds the new children to the children list only
      if they are not Young Adults (< 18y)
-   * update the children information using the childrenUpdates list
+   * update the children information using the childrenUpdates list:
      * check if the id of the children is still in the santa's children list
        (if not, then that means the child became a Young Adult)
      * add the new nice score to the child's nice scores list only
