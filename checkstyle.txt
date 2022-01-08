@@ -1,2 +1,4 @@
 Starting audit...
+[ERROR] /Users/rebeccastate/Desktop/proiect_POO/etapa1/./src/checker/Checker.java:16: Line is longer than 100 characters (found 102). [LineLength]
 Audit done.
+Checkstyle ends with 1 errors.

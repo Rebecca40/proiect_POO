@@ -18,7 +18,7 @@ public final class Child {
     private Double averageScore;
     private List<Double> niceScoreHistory;
     private Double assignedBudget;
-    private List<Gifts> receivedGifts;
+    private List<Gift> receivedGifts;
     private String ageCategory;
     private Double niceScore;
 
@@ -141,11 +141,11 @@ public final class Child {
         this.assignedBudget = assignedBudget;
     }
 
-    public List<Gifts> getReceivedGifts() {
+    public List<Gift> getReceivedGifts() {
         return receivedGifts;
     }
 
-    public void setReceivedGifts(final List<Gifts> receivedGifts) {
+    public void setReceivedGifts(final List<Gift> receivedGifts) {
         this.receivedGifts = receivedGifts;
     }
 

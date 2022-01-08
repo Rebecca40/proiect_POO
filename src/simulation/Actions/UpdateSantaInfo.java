@@ -1,15 +1,14 @@
 package simulation.Actions;
 
-import entities.Gifts;
+import entities.Gift;
 import entities.Santa;
 import fileio.input.AnnualChangesInput;
-import interfaces.UpdateInfo;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class UpdateSantaInfo implements UpdateInfo {
+public final class UpdateSantaInfo {
     private final AnnualChangesInput annualChange;
     private final Santa santa;
 
@@ -24,7 +23,7 @@ public final class UpdateSantaInfo implements UpdateInfo {
     public void update() {
         santa.setSantaBudget(annualChange.getNewSantaBudget());
 
-        List<Gifts> newGifts = annualChange.getNewGifts();
+        List<Gift> newGifts = annualChange.getNewGifts();
         santa.setSantaGiftsList(Stream.concat(
                         santa.getSantaGiftsList().stream(), newGifts.stream())
                 .collect(Collectors.toList()));

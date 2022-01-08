@@ -15,8 +15,6 @@ public final class BabyScoreStrategy implements ScoreStrategy {
         this.childId = childId;
     }
 
-
-    // presupun ca lista de copii este ordonata in functie de id
     @Override
     public void computeAverageScore() {
         for (Child child : children) {

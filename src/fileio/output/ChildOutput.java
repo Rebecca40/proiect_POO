@@ -1,7 +1,7 @@
 package fileio.output;
 
 import entities.Child;
-import entities.Gifts;
+import entities.Gift;
 import enums.Category;
 import enums.Cities;
 
@@ -17,7 +17,7 @@ public final class ChildOutput {
     private final Double averageScore;
     private final List<Double> niceScoreHistory;
     private final Double assignedBudget;
-    private final List<Gifts> receivedGifts;
+    private final List<Gift> receivedGifts;
 
     public ChildOutput(final Child childOutput) {
         id = childOutput.getId();
@@ -68,7 +68,7 @@ public final class ChildOutput {
         return assignedBudget;
     }
 
-    public List<Gifts> getReceivedGifts() {
+    public List<Gift> getReceivedGifts() {
         return receivedGifts;
     }
 }

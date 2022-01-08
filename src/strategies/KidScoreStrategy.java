@@ -16,7 +16,8 @@ public final class KidScoreStrategy implements ScoreStrategy {
 
 
     /*
-       For kids the average score is given by the arithmetic sum of the nice scores
+       For kids the average score is given by
+       the arithmetic sum of the nice scores
      */
     @Override
     public void computeAverageScore() {

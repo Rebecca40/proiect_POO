@@ -1,12 +1,12 @@
 package fileio.input;
 
-import entities.Gifts;
+import entities.Gift;
 
 import java.util.List;
 
 public final class AnnualChangesInput {
     private Double newSantaBudget;
-    private List<Gifts> newGifts;
+    private List<Gift> newGifts;
     private List<ChildrenInput> newChildren;
     private List<ChildUpdateInput> childrenUpdates;
 
@@ -21,11 +21,11 @@ public final class AnnualChangesInput {
         this.newSantaBudget = newSantaBudget;
     }
 
-    public List<Gifts> getNewGifts() {
+    public List<Gift> getNewGifts() {
         return newGifts;
     }
 
-    public void setNewGifts(final List<Gifts> newGifts) {
+    public void setNewGifts(final List<Gift> newGifts) {
         this.newGifts = newGifts;
     }
 

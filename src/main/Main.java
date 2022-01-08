@@ -35,7 +35,7 @@ public final class Main {
             Simulation simulation = new Simulation(inputData);
             simulation.simulateAllRounds();
 
-            /* Write fileio.output in file */
+            /* Write output in file */
             OutputData outputData = new OutputData(simulation.getAllRoundsChildren());
             Path path = Paths.get(Constants.OUT_PATH);
 
@@ -43,7 +43,6 @@ public final class Main {
                 Files.createDirectories(path);
             }
 
-            objectMapper = new ObjectMapper();
             ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
             objectWriter.writeValue(new File(
                     Constants.OUTPUT_PATH + i + Constants.FILE_EXTENSION), outputData);

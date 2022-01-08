@@ -1,12 +1,12 @@
 package fileio.input;
 
-import entities.Gifts;
+import entities.Gift;
 
 import java.util.List;
 
 public final class InitialData {
     private List<ChildrenInput> children;
-    private List<Gifts> santaGiftsList;
+    private List<Gift> santaGiftsList;
 
     public InitialData() {
     }
@@ -19,11 +19,11 @@ public final class InitialData {
         this.children = children;
     }
 
-    public List<Gifts> getSantaGiftsList() {
+    public List<Gift> getSantaGiftsList() {
         return santaGiftsList;
     }
 
-    public void setSantaGiftsList(final List<Gifts> santaGiftsList) {
-        this.santaGiftsList = santaGiftsList;
+    public void setSantaGiftsList(final List<Gift> santaGiftList) {
+        this.santaGiftsList = santaGiftList;
     }
 }

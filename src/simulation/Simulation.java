@@ -8,10 +8,9 @@ import factories.ScoreStrategyFactory;
 import fileio.input.AnnualChangesInput;
 import fileio.input.ChildrenInput;
 import fileio.input.Input;
-import interfaces.ScoreStrategy;
 import simulation.Actions.CalculateBudget;
 import simulation.Actions.UpdateChildrenInfo;
-import simulation.Actions.UpdateReceviedGifts;
+import simulation.Actions.DistributeGifts;
 import simulation.Actions.UpdateSantaInfo;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.List;
 public final class Simulation {
      /*
      *  List in which I keep all the children that
-     *  received gifts from the current round
+     *  received gifts in the current round
      */
      private List<Child> currentRoundChildren;
 
@@ -73,21 +72,17 @@ public final class Simulation {
 
          /* Compute average score for each child */
          for (Child child : currentRoundChildren) {
-             ScoreStrategy strategy =
-                     ScoreStrategyFactory.createStrategy(child, currentRoundChildren);
-
-             assert strategy != null;
-             strategy.computeAverageScore();
+             ScoreStrategyFactory
+                     .createStrategy(child, currentRoundChildren).computeAverageScore();
          }
 
          /* Compute budget for each child */
         CalculateBudget budget = new CalculateBudget(currentRoundChildren, santa);
         budget.calculateBudget();
-//         calculateBudget();
 
          /* Distribute gifts for each child */
-        UpdateReceviedGifts updateReceviedGifts =
-                new UpdateReceviedGifts(currentRoundChildren, santa);
+        DistributeGifts updateReceviedGifts =
+                new DistributeGifts(currentRoundChildren, santa);
         updateReceviedGifts.update();
      }
 

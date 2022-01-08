@@ -4,14 +4,13 @@ import entities.Child;
 import enums.Category;
 import fileio.input.AnnualChangesInput;
 import fileio.input.ChildUpdateInput;
-import interfaces.UpdateInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class UpdateChildrenInfo implements UpdateInfo {
+public final class UpdateChildrenInfo {
     private final AnnualChangesInput annualChange;
     private final List<Child> currentRoundChildren;
 
@@ -41,7 +40,7 @@ public final class UpdateChildrenInfo implements UpdateInfo {
                      *  Add new gifts categories to the beginning
                      *  of the child's gifts preferences list
                      */
-                    if (childUpdate.getGiftsPreferences() != null) {
+                    if (!childUpdate.getGiftsPreferences().isEmpty()) {
 
                         /*
                          *  Create a list of new gifts preferences that
