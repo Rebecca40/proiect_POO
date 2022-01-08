@@ -50,7 +50,7 @@ Group: 321CA
                             the information of santa
         * DistributeGifts - class which contains method that distributes gifts
                             to each child according to their gifts preferences
-    * Simulation - 
+    * Simulation - implements methods for the initial and basic rounds
 * strategies/ - Concrete classes that implement the Strategy interface and
                 override method that computes the average score
   * BabyScoreStrategy
