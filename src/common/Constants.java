@@ -20,6 +20,8 @@ public final class Constants {
     public static final Integer BABY_MAX_AGE = 5;
     public static final Integer KID_MAX_AGE = 12;
     public static final Integer TEEN_MAX_AGE = 18;
+    public static final int FIRST = 0;
+
     private Constants() {
         //constructor for checkstyle
     }

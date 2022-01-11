@@ -1,4 +1,4 @@
-package strategies;
+package strategies.averageScore;
 
 import entities.Child;
 import interfaces.ScoreStrategy;
@@ -25,7 +25,12 @@ public final class TeenScoreStrategy implements ScoreStrategy {
                     sum += i + 1;
                     niceScoreSum += (i + 1) * child.getNiceScoreHistory().get(i);
                 }
-                child.setAverageScore(niceScoreSum / sum);
+                double average = niceScoreSum / sum;
+
+                if (child.getNiceScoreBonus() != 0) {
+                    average += average * child.getNiceScoreBonus() / 100;
+                }
+                child.setAverageScore(average);
             }
         }
     }

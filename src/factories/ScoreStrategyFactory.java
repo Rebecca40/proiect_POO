@@ -3,9 +3,9 @@ package factories;
 import common.Constants;
 import entities.Child;
 import interfaces.ScoreStrategy;
-import strategies.BabyScoreStrategy;
-import strategies.KidScoreStrategy;
-import strategies.TeenScoreStrategy;
+import strategies.averageScore.BabyScoreStrategy;
+import strategies.averageScore.KidScoreStrategy;
+import strategies.averageScore.TeenScoreStrategy;
 
 import java.util.List;
 

@@ -11,6 +11,10 @@ public final class Gift {
     public Gift() {
     }
 
+    public void decreaseQuantity() {
+        quantity--;
+    }
+
     public int getQuantity() {
         return quantity;
     }

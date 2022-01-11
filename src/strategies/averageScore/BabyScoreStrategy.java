@@ -1,4 +1,4 @@
-package strategies;
+package strategies.averageScore;
 
 import common.Constants;
 import entities.Child;

@@ -1,4 +1,4 @@
-package strategies;
+package strategies.averageScore;
 
 import entities.Child;
 import interfaces.ScoreStrategy;
@@ -28,7 +28,12 @@ public final class KidScoreStrategy implements ScoreStrategy {
                     average += score;
                 }
                 average /= child.getNiceScoreHistory().size();
+
+                if (child.getNiceScoreBonus() != 0) {
+                    average += average * child.getNiceScoreBonus() / 100;
+                }
                 child.setAverageScore(average);
+
             }
         }
     }

@@ -2,6 +2,7 @@ package simulation.Actions;
 
 import entities.Child;
 import entities.Santa;
+import enums.ElvesType;
 
 import java.util.List;
 
@@ -24,9 +25,18 @@ public final class CalculateBudget {
         }
 
         Double budgetUnit = santa.getSantaBudget() / averageScoreSum;
-
+        Double childBudget;
         for (Child child : currentRoundChildren) {
-            child.setAssignedBudget(budgetUnit * child.getAverageScore());
+            childBudget = budgetUnit * child.getAverageScore();
+
+            if (child.getElf().equals(ElvesType.PINK)) {
+                childBudget += childBudget * 30 / 100;
+            } else if (child.getElf().equals(ElvesType.BLACK)) {
+                childBudget -= childBudget * 30 / 100;
+            }
+
+            child.setAssignedBudget(childBudget);
+
         }
     }
 }
