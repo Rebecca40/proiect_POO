@@ -6,8 +6,17 @@ public final class Gift {
     private String productName;
     private Double price;
     private Category category;
+    private int quantity;
 
     public Gift() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(final int quantity) {
+        this.quantity = quantity;
     }
 
     public String getProductName() {
@@ -32,5 +41,15 @@ public final class Gift {
 
     public void setCategory(final Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "productName='" + productName + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", quantity=" + quantity +
+                '}';
     }
 }

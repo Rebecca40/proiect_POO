@@ -5,6 +5,7 @@ import entities.Gift;
 import enums.Category;
 import enums.Cities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class ChildOutput {
@@ -17,7 +18,7 @@ public final class ChildOutput {
     private final Double averageScore;
     private final List<Double> niceScoreHistory;
     private final Double assignedBudget;
-    private final List<Gift> receivedGifts;
+    private final List<GiftOutput> receivedGifts;
 
     public ChildOutput(final Child childOutput) {
         id = childOutput.getId();
@@ -29,7 +30,10 @@ public final class ChildOutput {
         averageScore = childOutput.getAverageScore();
         niceScoreHistory = childOutput.getNiceScoreHistory();
         assignedBudget = childOutput.getAssignedBudget();
-        receivedGifts = childOutput.getReceivedGifts();
+        receivedGifts = new ArrayList<>();
+        for (Gift gift : childOutput.getReceivedGifts()) {
+            receivedGifts.add(new GiftOutput(gift));
+        }
     }
 
     public Integer getId() {
@@ -68,7 +72,7 @@ public final class ChildOutput {
         return assignedBudget;
     }
 
-    public List<Gift> getReceivedGifts() {
+    public List<GiftOutput> getReceivedGifts() {
         return receivedGifts;
     }
 }

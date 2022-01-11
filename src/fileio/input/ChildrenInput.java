@@ -2,6 +2,7 @@ package fileio.input;
 
 import enums.Category;
 import enums.Cities;
+import enums.ElvesType;
 
 import java.util.List;
 
@@ -13,8 +14,26 @@ public final class ChildrenInput {
     private Cities city;
     private Double niceScore;
     private List<Category> giftsPreferences;
+    private Double niceScoreBonus;
+    private ElvesType elf;
 
     public ChildrenInput() {
+    }
+
+    public ElvesType getElf() {
+        return elf;
+    }
+
+    public void setElf(final ElvesType elf) {
+        this.elf = elf;
+    }
+
+    public Double getNiceScoreBonus() {
+        return niceScoreBonus;
+    }
+
+    public void setNiceScoreBonus(final Double niceScoreBonus) {
+        this.niceScoreBonus = niceScoreBonus;
     }
 
     public Integer getId() {

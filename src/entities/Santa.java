@@ -57,4 +57,12 @@ public final class Santa {
     public List<Gift> getSantaGiftsList() {
         return santaGiftsList;
     }
+
+    @Override
+    public String toString() {
+        return "Santa{" +
+                "santaBudget=" + santaBudget +
+                ", santaGiftsList=" + santaGiftsList +
+                '}';
+    }
 }

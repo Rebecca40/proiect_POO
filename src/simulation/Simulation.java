@@ -57,6 +57,7 @@ public final class Simulation {
         initialRound();
         allRoundsChildren.add(currentRoundChildren);
 
+
         for (int i = 0; i < numberOfYears; i++) {
             basicRound(annualChanges.get(i));
             allRoundsChildren.add(currentRoundChildren);

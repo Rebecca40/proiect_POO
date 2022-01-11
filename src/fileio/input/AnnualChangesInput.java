@@ -9,8 +9,17 @@ public final class AnnualChangesInput {
     private List<Gift> newGifts;
     private List<ChildrenInput> newChildren;
     private List<ChildUpdateInput> childrenUpdates;
+    private String strategy;
 
     public AnnualChangesInput() {
+    }
+
+    public String getStrategy() {
+        return strategy;
+    }
+
+    public void setStrategy(final String strategy) {
+        this.strategy = strategy;
     }
 
     public Double getNewSantaBudget() {

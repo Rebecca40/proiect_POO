@@ -1,8 +1,10 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import common.Constants;
 import enums.Category;
 import enums.Cities;
+import enums.ElvesType;
 import fileio.input.ChildrenInput;
 
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public final class Child {
     private List<Gift> receivedGifts;
     private String ageCategory;
     private Double niceScore;
+    private Double niceScoreBonus;
+    private ElvesType elf;
+
 
     public Child(final Child child) {
         this.id = child.id;
@@ -31,6 +36,8 @@ public final class Child {
         this.giftsPreferences = child.giftsPreferences;
         this.niceScore = child.niceScore;
         this.ageCategory = child.ageCategory;
+        this.niceScoreBonus = child.niceScoreBonus;
+        this.elf = child.elf;
         this.niceScoreHistory = new ArrayList<>();
         this.niceScoreHistory.addAll(child.getNiceScoreHistory());
         receivedGifts = new ArrayList<>();
@@ -47,6 +54,8 @@ public final class Child {
         niceScoreHistory = new ArrayList<>();
         niceScoreHistory.add(niceScore);
         receivedGifts = new ArrayList<>();
+        this.niceScoreBonus = childInput.getNiceScoreBonus();
+        this.elf = childInput.getElf();
     }
 
     /**
@@ -163,5 +172,41 @@ public final class Child {
 
     public void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
+    }
+
+    public Double getNiceScoreBonus() {
+        return niceScoreBonus;
+    }
+
+    public void setNiceScoreBonus(final Double niceScoreBonus) {
+        this.niceScoreBonus = niceScoreBonus;
+    }
+
+    public ElvesType getElf() {
+        return elf;
+    }
+
+    public void setElf(ElvesType elf) {
+        this.elf = elf;
+    }
+
+    @Override
+    public String toString() {
+        return "Child{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", city=" + city +
+                ", age=" + age +
+                ", giftsPreferences=" + giftsPreferences +
+                ", averageScore=" + averageScore +
+                ", niceScoreHistory=" + niceScoreHistory +
+                ", assignedBudget=" + assignedBudget +
+                ", receivedGifts=" + receivedGifts +
+                ", ageCategory='" + ageCategory + '\'' +
+                ", niceScore=" + niceScore +
+                ", niceScoreBonus=" + niceScoreBonus +
+                ", elf=" + elf +
+                '}';
     }
 }
