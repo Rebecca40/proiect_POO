@@ -4,36 +4,35 @@ import common.Constants;
 import database.Database;
 import entities.Child;
 import entities.Santa;
+import factories.DistributeGiftsFactory;
 import factories.ScoreStrategyFactory;
 import fileio.input.AnnualChangesInput;
 import fileio.input.ChildrenInput;
 import fileio.input.Input;
-import simulation.Actions.CalculateBudget;
-import simulation.Actions.UpdateChildrenInfo;
-import simulation.Actions.DistributeGifts;
-import simulation.Actions.UpdateSantaInfo;
+import simulation.Actions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Simulation {
-     /*
-     *  List in which I keep all the children that
-     *  received gifts in the current round
-     */
-     private List<Child> currentRoundChildren;
 
-     /*
-     *  List in which I keep a list of all the children
-     *  that received gifts at each round
-     */
-     private final List<List<Child>> allRoundsChildren;
+    /*
+    *  List in which I keep all the children that
+    *  received gifts in the current round
+    */
+    private List<Child> currentRoundChildren;
 
-     private final List<AnnualChangesInput> annualChanges;
+    /*
+    *  List in which I keep a list of all the children
+    *  that received gifts at each round
+    */
+    private final List<List<Child>> allRoundsChildren;
 
-     private final Santa santa;
+    private final List<AnnualChangesInput> annualChanges;
 
-     private final Integer numberOfYears;
+    private final Santa santa;
+
+    private final Integer numberOfYears;
 
     private final Database database;
 
@@ -54,7 +53,7 @@ public final class Simulation {
         /* Remove all children 18+ */
         currentRoundChildren.removeIf(child -> child.getAge() > Constants.TEEN_MAX_AGE);
 
-        initialRound();
+        initialRound(Constants.ID);
         allRoundsChildren.add(currentRoundChildren);
 
 
@@ -62,12 +61,13 @@ public final class Simulation {
             basicRound(annualChanges.get(i));
             allRoundsChildren.add(currentRoundChildren);
         }
+//        System.out.println(allRoundsChildren);
     }
 
     /**
      * The initial round of the simulation
      */
-    public void initialRound() {
+    public void initialRound(String strategy) {
          /* Determine age category for each child */
          currentRoundChildren.forEach(Child::determineAgeCategory);
 
@@ -78,13 +78,21 @@ public final class Simulation {
          }
 
          /* Compute budget for each child */
-        CalculateBudget budget = new CalculateBudget(currentRoundChildren, santa);
-        budget.calculateBudget();
+         CalculateBudget budget = new CalculateBudget(currentRoundChildren, santa);
+         budget.calculateBudget();
 
          /* Distribute gifts for each child */
-        DistributeGifts updateReceviedGifts =
-                new DistributeGifts(currentRoundChildren, santa);
-        updateReceviedGifts.update();
+         DistributeGiftsFactory
+                 .createStrategy(strategy, currentRoundChildren, santa)
+                 .distributeGifts();
+
+//        DistributeGifts updateReceivedGifts =
+//                new DistributeGifts(currentRoundChildren, santa);
+//        updateReceivedGifts.update();
+
+//
+         YellowElfAction yellowElfAction = new YellowElfAction(currentRoundChildren);
+         yellowElfAction.applyAction(santa);
      }
 
     /**
@@ -125,7 +133,8 @@ public final class Simulation {
          UpdateSantaInfo updateSantaInfo = new UpdateSantaInfo(annualChange, santa);
          updateSantaInfo.update();
 
-         initialRound();
+         initialRound(annualChange.getStrategy());
+         System.out.println(annualChange.getStrategy());
      }
 
     public List<AnnualChangesInput> getAnnualChanges() {

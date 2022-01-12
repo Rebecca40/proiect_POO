@@ -19,7 +19,7 @@ public final class BabyScoreStrategy implements ScoreStrategy {
     public void computeAverageScore() {
         for (Child child : children) {
             if (child.getId() == childId) {
-                child.setAverageScore(Constants.BABY_SCORE);
+                child.setAverageScore(Constants.PERFECT_SCORE);
             }
         }
     }

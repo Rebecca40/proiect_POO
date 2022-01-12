@@ -39,12 +39,16 @@ public final class DistributeGifts {
                  * If the list is empty then santa doesn't have a gift from the given category
                  */
                 if (!allGiftsFromCategory.isEmpty()) {
-                    if (allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getQuantity() != 0) {
+//                    if (allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getQuantity() != 0) {
                         Double giftPrice =
                                 allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getPrice();
-
+//                        if (child.getId() == 3) {
+//
+//                            System.out.println(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getProductName());
+//                        }
                         /* Check if the gift doesn't exceed the child's budget*/
                         if (childBudget - giftPrice >= 0) {
+
                             child.getReceivedGifts()
                                     .add(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT));
 
@@ -57,7 +61,7 @@ public final class DistributeGifts {
                             childBudget -= giftPrice;
                         }
                     }
-                }
+//                }
             }
         }
     }

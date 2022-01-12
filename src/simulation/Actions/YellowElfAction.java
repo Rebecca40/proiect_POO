@@ -19,7 +19,7 @@ public final class YellowElfAction {
     // s ar putea sa am nevoie de copy constructor
     public void applyAction (Santa santa) {
         for (Child child : currentRoundChildren) {
-            if (child.getElf().equals(ElvesType.YELLOW)) {
+            if (child.getElf().equals(ElvesType.YELLOW) && child.getReceivedGifts().isEmpty()) {
 
                 /*
                 * Get from santa's bag all the gifts

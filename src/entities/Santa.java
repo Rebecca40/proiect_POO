@@ -25,7 +25,7 @@ public final class Santa {
     public List<Gift> getCategoryGiftsList(final Category category) {
         List<Gift> allGiftFromCategory = new ArrayList<>();
         for (Gift gift : santaGiftsList) {
-            if (gift.getCategory().equals(category)) {
+            if (gift.getCategory().equals(category) && gift.getQuantity() != 0) {
                 allGiftFromCategory.add(gift);
             }
         }

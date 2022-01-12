@@ -36,6 +36,10 @@ public final class UpdateChildrenInfo {
                         child.setNiceScore(childUpdate.getNiceScore());
                     }
 
+                    /* Update elf */
+                    if (childUpdate.getElf() != null) {
+                        child.setElf(childUpdate.getElf());
+                    }
                     /*
                      *  Add new gifts categories to the beginning
                      *  of the child's gifts preferences list

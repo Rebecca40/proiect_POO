@@ -16,11 +16,17 @@ public final class Constants {
     public static final String BABY = "baby";
     public static final String TEEN = "teen";
     public static final int CHEAPEST_GIFT = 0;
-    public static final Double BABY_SCORE = 10.0;
+    public static final Double PERFECT_SCORE = 10.0;
     public static final Integer BABY_MAX_AGE = 5;
     public static final Integer KID_MAX_AGE = 12;
     public static final Integer TEEN_MAX_AGE = 18;
     public static final int FIRST = 0;
+    public static final String ID = "id";
+    public static final String CITYSCORE = "niceScoreCity";
+    public static final String NICESCORE = "niceScore";
+
+
+
 
     private Constants() {
         //constructor for checkstyle

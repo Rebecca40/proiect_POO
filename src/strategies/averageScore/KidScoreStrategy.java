@@ -1,5 +1,6 @@
 package strategies.averageScore;
 
+import common.Constants;
 import entities.Child;
 import interfaces.ScoreStrategy;
 
@@ -31,6 +32,10 @@ public final class KidScoreStrategy implements ScoreStrategy {
 
                 if (child.getNiceScoreBonus() != 0) {
                     average += average * child.getNiceScoreBonus() / 100;
+                }
+
+                if (average > Constants.PERFECT_SCORE) {
+                    average = Constants.PERFECT_SCORE;
                 }
                 child.setAverageScore(average);
 
