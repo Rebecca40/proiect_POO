@@ -21,18 +21,19 @@ public final class NiceScoreDistributionStrategy implements DistributeGiftsStrat
     @Override
     public void distributeGifts() {
         List<Child> children = currentRoundChildren.stream()
-                .sorted(Comparator.comparing(Child::getNiceScore).reversed()
+                .sorted(Comparator.comparing(Child::getAverageScore).reversed()
                 .thenComparing(Child::getId))
                 .collect(Collectors.toList());
-        System.out.println(santa.getSantaGiftsList());
 
+        System.out.println(santa.getSantaGiftsList());
+        System.out.println();
         /* Distribute gifts for each child */
         DistributeGifts updateReceivedGifts =
                 new DistributeGifts(children, santa);
         updateReceivedGifts.update();
 
         System.out.println(santa.getSantaGiftsList());
-        System.out.println();
+
         currentRoundChildren = children.stream()
                 .sorted(Comparator.comparing(Child::getId))
                 .collect(Collectors.toList());

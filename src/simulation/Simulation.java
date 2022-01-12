@@ -61,7 +61,6 @@ public final class Simulation {
             basicRound(annualChanges.get(i));
             allRoundsChildren.add(currentRoundChildren);
         }
-//        System.out.println(allRoundsChildren);
     }
 
     /**
@@ -134,7 +133,6 @@ public final class Simulation {
          updateSantaInfo.update();
 
          initialRound(annualChange.getStrategy());
-         System.out.println(annualChange.getStrategy());
      }
 
     public List<AnnualChangesInput> getAnnualChanges() {

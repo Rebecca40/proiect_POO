@@ -16,7 +16,6 @@ public final class YellowElfAction {
         this.currentRoundChildren = currentRoundChildren;
     }
 
-    // s ar putea sa am nevoie de copy constructor
     public void applyAction (Santa santa) {
         for (Child child : currentRoundChildren) {
             if (child.getElf().equals(ElvesType.YELLOW) && child.getReceivedGifts().isEmpty()) {
@@ -25,11 +24,12 @@ public final class YellowElfAction {
                 * Get from santa's bag all the gifts
                 * from the child's most wanted category
                 */
-                List<Gift> allGiftsFromCategory = santa.getCategoryGiftsList(
+                List<Gift> allGiftsFromCategory = santa.getCategoryGiftsListYellowElf(
                                 child.getGiftsPreferences().get(Constants.FIRST));
 
                 if (!allGiftsFromCategory.isEmpty()) {
                     /* Check if santa has in his bag the cheapest gift */
+                    System.out.println(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getProductName());
                     if (allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getQuantity() != 0) {
                         child.getReceivedGifts()
                                 .add(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT));

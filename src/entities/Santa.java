@@ -19,6 +19,7 @@ public final class Santa {
     /**
      * Finds all the gifts that santa has from a given category
      * and stores them in a list which will be sorted by price
+     * The gift is added to the list only if quantity > 0
      * @param category needed category
      * @return sorted gifts list
      */
@@ -26,6 +27,22 @@ public final class Santa {
         List<Gift> allGiftFromCategory = new ArrayList<>();
         for (Gift gift : santaGiftsList) {
             if (gift.getCategory().equals(category) && gift.getQuantity() != 0) {
+                allGiftFromCategory.add(gift);
+            }
+        }
+        return sortGiftsByPrice(allGiftFromCategory);
+    }
+
+    /**
+     * This method is similar with getCategoryGiftsList(), except
+     * this one doesn't check if quantity is greater than 0 or not
+     * @param category needed category
+     * @return sorted gifts list
+     */
+    public List<Gift> getCategoryGiftsListYellowElf(final Category category) {
+        List<Gift> allGiftFromCategory = new ArrayList<>();
+        for (Gift gift : santaGiftsList) {
+            if (gift.getCategory().equals(category)) {
                 allGiftFromCategory.add(gift);
             }
         }
