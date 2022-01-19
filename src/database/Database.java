@@ -46,7 +46,13 @@ public final class Database {
 
         currentRoundChildren = new ArrayList<>();
         for (ChildrenInput child : input.getInitialData().getChildren()) {
-            Child currentChild = new Child(child);
+            Child currentChild;
+            if (child.getNiceScoreBonus() != 0) {
+                currentChild = new Child.ChildBuilder(child)
+                        .niceScoreBonus(child.getNiceScoreBonus()).build();
+            } else {
+                currentChild = new Child.ChildBuilder(child).build();
+            }
             currentRoundChildren.add(currentChild);
         }
 

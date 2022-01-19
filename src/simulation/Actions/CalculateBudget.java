@@ -1,5 +1,6 @@
 package simulation.Actions;
 
+import common.Constants;
 import entities.Child;
 import entities.Santa;
 import enums.ElvesType;
@@ -30,9 +31,9 @@ public final class CalculateBudget {
             childBudget = budgetUnit * child.getAverageScore();
 
             if (child.getElf().equals(ElvesType.PINK)) {
-                childBudget += childBudget * 30 / 100;
+                childBudget += childBudget * Constants.THIRTY / Constants.ONE_HUNDRED;
             } else if (child.getElf().equals(ElvesType.BLACK)) {
-                childBudget -= childBudget * 30 / 100;
+                childBudget -= childBudget * Constants.THIRTY / Constants.ONE_HUNDRED;
             }
 
             child.setAssignedBudget(childBudget);

@@ -12,11 +12,17 @@ import java.util.List;
 public final class YellowElfAction {
     private final List<Child> currentRoundChildren;
 
-    public YellowElfAction(List<Child> currentRoundChildren) {
+    public YellowElfAction(final List<Child> currentRoundChildren) {
         this.currentRoundChildren = currentRoundChildren;
     }
 
-    public void applyAction (Santa santa) {
+    /**
+     *  Function that helps the yellow elf to assign a gift
+     *  to all the children that haven't received one yet only
+     *  if Santa has in his bag the cheapest gift from the child's
+     *  most wanted gift category
+     */
+    public void applyYellowElfAction(final Santa santa) {
         for (Child child : currentRoundChildren) {
             if (child.getElf().equals(ElvesType.YELLOW) && child.getReceivedGifts().isEmpty()) {
 
@@ -29,7 +35,6 @@ public final class YellowElfAction {
 
                 if (!allGiftsFromCategory.isEmpty()) {
                     /* Check if santa has in his bag the cheapest gift */
-                    System.out.println(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getProductName());
                     if (allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getQuantity() != 0) {
                         child.getReceivedGifts()
                                 .add(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT));
@@ -48,7 +53,7 @@ public final class YellowElfAction {
     /**
      * Finds a given gift in santa's gifts list and decreases its quantity
      */
-    public void findGift (Gift gift, List<Gift> giftsList) {
+    public void findGift(final Gift gift, final List<Gift> giftsList) {
         for (Gift gift1 : giftsList) {
             if (gift.equals(gift1)) {
                 gift1.decreaseQuantity();

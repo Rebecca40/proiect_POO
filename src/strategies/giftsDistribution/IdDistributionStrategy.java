@@ -8,11 +8,11 @@ import simulation.Actions.DistributeGifts;
 import java.util.List;
 
 public final class IdDistributionStrategy implements DistributeGiftsStrategy {
-    private List<Child> currentRoundChildren;
-    private Santa santa;
+    private final List<Child> currentRoundChildren;
+    private final Santa santa;
 
-    public IdDistributionStrategy(List<Child> currentRoundChildren,
-                                  Santa santa) {
+    public IdDistributionStrategy(final List<Child> currentRoundChildren,
+                                  final Santa santa) {
         this.currentRoundChildren = currentRoundChildren;
         this.santa = santa;
     }
@@ -23,7 +23,5 @@ public final class IdDistributionStrategy implements DistributeGiftsStrategy {
         DistributeGifts updateReceivedGifts =
                 new DistributeGifts(currentRoundChildren, santa);
         updateReceivedGifts.update();
-//        System.out.println(currentRoundChildren.get(0));
-
     }
 }

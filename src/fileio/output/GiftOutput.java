@@ -8,7 +8,7 @@ public final class GiftOutput {
     private Double price;
     private Category category;
 
-    public GiftOutput(Gift gift) {
+    public GiftOutput(final Gift gift) {
         productName = gift.getProductName();
         price = gift.getPrice();
         category = gift.getCategory();

@@ -22,8 +22,11 @@ public final class Constants {
     public static final Integer TEEN_MAX_AGE = 18;
     public static final int FIRST = 0;
     public static final String ID = "id";
-    public static final String CITYSCORE = "niceScoreCity";
-    public static final String NICESCORE = "niceScore";
+    public static final String CITY_SCORE = "niceScoreCity";
+    public static final String NICE_SCORE = "niceScore";
+    public static final int ONE_HUNDRED = 100;
+    public static final int THIRTY = 30;
+
 
 
 

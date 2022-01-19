@@ -11,6 +11,9 @@ public final class Gift {
     public Gift() {
     }
 
+    /**
+     * Decrease the quantity of a gift from Santa's bag
+     */
     public void decreaseQuantity() {
         quantity--;
     }
@@ -45,15 +48,5 @@ public final class Gift {
 
     public void setCategory(final Category category) {
         this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "Gift{" +
-                "productName='" + productName + '\'' +
-                ", price=" + price +
-                ", category=" + category +
-                ", quantity=" + quantity +
-                '}';
     }
 }

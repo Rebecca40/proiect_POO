@@ -27,7 +27,7 @@ public final class Main {
      *          the arguments used to call the main method
      */
     public static void main(final String[] args) throws IOException {
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 1; i <= Constants.TESTS_NUMBER; i++) {
             ObjectMapper objectMapper = new ObjectMapper();
             Input inputData = objectMapper.readValue(
                     new File(Constants.TESTS_PATH + i + Constants.FILE_EXTENSION), Input.class);

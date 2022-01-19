@@ -1,6 +1,5 @@
 package entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import common.Constants;
 import enums.Category;
 import enums.Cities;
@@ -26,7 +25,6 @@ public final class Child {
     private Double niceScoreBonus;
     private ElvesType elf;
 
-
     public Child(final Child child) {
         this.id = child.id;
         this.lastName = child.lastName;
@@ -43,19 +41,61 @@ public final class Child {
         receivedGifts = new ArrayList<>();
     }
 
-    public Child(final ChildrenInput childInput) {
-        id = childInput.getId();
-        lastName = childInput.getLastName();
-        firstName = childInput.getFirstName();
-        city = childInput.getCity();
-        age = childInput.getAge();
-        giftsPreferences = childInput.getGiftsPreferences();
-        niceScore = childInput.getNiceScore();
-        niceScoreHistory = new ArrayList<>();
-        niceScoreHistory.add(niceScore);
-        receivedGifts = new ArrayList<>();
-        this.niceScoreBonus = childInput.getNiceScoreBonus();
-        this.elf = childInput.getElf();
+    public Child(final ChildBuilder childBuilder) {
+        id = childBuilder.id;
+        lastName = childBuilder.lastName;
+        firstName = childBuilder.firstName;
+        city = childBuilder.city;
+        age = childBuilder.age;
+        giftsPreferences = childBuilder.giftsPreferences;
+        niceScore = childBuilder.niceScore;
+        niceScoreHistory = childBuilder.niceScoreHistory;
+        receivedGifts = childBuilder.receivedGifts;
+        this.niceScoreBonus = childBuilder.niceScoreBonus;
+        this.elf = childBuilder.elf;
+    }
+
+    public final static class ChildBuilder {
+        private final Integer id;
+        private final String lastName;
+        private final String firstName;
+        private final Cities city;
+        private final Integer age;
+        private final List<Category> giftsPreferences;
+        private final List<Double> niceScoreHistory;
+        private final List<Gift> receivedGifts;
+        private final Double niceScore;
+        private Double niceScoreBonus = 0.0; /* Optional */
+        private final ElvesType elf;
+
+        public ChildBuilder(final ChildrenInput childInput) {
+            id = childInput.getId();
+            lastName = childInput.getLastName();
+            firstName = childInput.getFirstName();
+            city = childInput.getCity();
+            age = childInput.getAge();
+            giftsPreferences = childInput.getGiftsPreferences();
+            niceScore = childInput.getNiceScore();
+            niceScoreHistory = new ArrayList<>();
+            niceScoreHistory.add(niceScore);
+            receivedGifts = new ArrayList<>();
+            elf = childInput.getElf();
+        }
+
+        /**
+         *  Set the optional parameter
+         */
+        public  ChildBuilder niceScoreBonus(final Double niceScoreBonus) {
+            this.niceScoreBonus = niceScoreBonus;
+            return this;
+        }
+
+        /**
+         * Returns new instance of the Child class
+         */
+        public Child build() {
+            return new Child(this);
+        }
     }
 
     /**
@@ -186,27 +226,7 @@ public final class Child {
         return elf;
     }
 
-    public void setElf(ElvesType elf) {
+    public void setElf(final ElvesType elf) {
         this.elf = elf;
-    }
-
-    @Override
-    public String toString() {
-        return "Child{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", city=" + city +
-                ", age=" + age +
-                ", giftsPreferences=" + giftsPreferences +
-                ", averageScore=" + averageScore +
-                ", niceScoreHistory=" + niceScoreHistory +
-                ", assignedBudget=" + assignedBudget +
-                ", receivedGifts=" + receivedGifts +
-                ", ageCategory='" + ageCategory + '\'' +
-                ", niceScore=" + niceScore +
-                ", niceScoreBonus=" + niceScoreBonus +
-                ", elf=" + elf +
-                '}';
     }
 }

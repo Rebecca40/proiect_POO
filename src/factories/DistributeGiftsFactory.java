@@ -4,10 +4,6 @@ import common.Constants;
 import entities.Child;
 import entities.Santa;
 import interfaces.DistributeGiftsStrategy;
-import interfaces.ScoreStrategy;
-import strategies.averageScore.BabyScoreStrategy;
-import strategies.averageScore.KidScoreStrategy;
-import strategies.averageScore.TeenScoreStrategy;
 import strategies.giftsDistribution.IdDistributionStrategy;
 import strategies.giftsDistribution.NiceScoreCityDistributionStrategy;
 import strategies.giftsDistribution.NiceScoreDistributionStrategy;
@@ -27,8 +23,8 @@ public final class DistributeGiftsFactory {
                                                          final Santa santa) {
         return switch (strategy) {
             case Constants.ID -> new IdDistributionStrategy(children, santa);
-            case Constants.NICESCORE -> new NiceScoreDistributionStrategy(children, santa);
-            case Constants.CITYSCORE -> new NiceScoreCityDistributionStrategy(children, santa);
+            case Constants.NICE_SCORE -> new NiceScoreDistributionStrategy(children, santa);
+            case Constants.CITY_SCORE -> new NiceScoreCityDistributionStrategy(children, santa);
             default -> null;
         };
     }

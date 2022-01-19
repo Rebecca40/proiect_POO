@@ -29,7 +29,7 @@ public final class TeenScoreStrategy implements ScoreStrategy {
                 double average = niceScoreSum / sum;
 
                 if (child.getNiceScoreBonus() != 0) {
-                    average += average * child.getNiceScoreBonus() / 100;
+                    average += average * child.getNiceScoreBonus() / Constants.ONE_HUNDRED;
                 }
 
                 if (average > Constants.PERFECT_SCORE) {

@@ -9,7 +9,10 @@ import factories.ScoreStrategyFactory;
 import fileio.input.AnnualChangesInput;
 import fileio.input.ChildrenInput;
 import fileio.input.Input;
-import simulation.Actions.*;
+import simulation.Actions.CalculateBudget;
+import simulation.Actions.UpdateChildrenInfo;
+import simulation.Actions.UpdateSantaInfo;
+import simulation.Actions.YellowElfAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +69,7 @@ public final class Simulation {
     /**
      * The initial round of the simulation
      */
-    public void initialRound(String strategy) {
+    public void initialRound(final String strategy) {
          /* Determine age category for each child */
          currentRoundChildren.forEach(Child::determineAgeCategory);
 
@@ -85,13 +88,8 @@ public final class Simulation {
                  .createStrategy(strategy, currentRoundChildren, santa)
                  .distributeGifts();
 
-//        DistributeGifts updateReceivedGifts =
-//                new DistributeGifts(currentRoundChildren, santa);
-//        updateReceivedGifts.update();
-
-//
          YellowElfAction yellowElfAction = new YellowElfAction(currentRoundChildren);
-         yellowElfAction.applyAction(santa);
+         yellowElfAction.applyYellowElfAction(santa);
      }
 
     /**
@@ -115,7 +113,13 @@ public final class Simulation {
          for (ChildrenInput child : newChildren) {
              Integer age = child.getAge();
              if (age <= Constants.TEEN_MAX_AGE) {
-                 Child currentChild = new Child(child);
+                 Child currentChild;
+                 if (child.getNiceScoreBonus() != 0) {
+                     currentChild = new Child.ChildBuilder(child)
+                             .niceScoreBonus(child.getNiceScoreBonus()).build();
+                 } else {
+                     currentChild = new Child.ChildBuilder(child).build();
+                 }
                  currentRoundChildren.add(currentChild);
              }
          }

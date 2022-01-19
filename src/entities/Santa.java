@@ -59,18 +59,6 @@ public final class Santa {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Finds a given gift in santa's gifts list and decreases its quantity
-     */
-    public void findGift (Gift gift) {
-        for (Gift gift1 : santaGiftsList) {
-            if (gift.equals(gift1)) {
-                gift1.decreaseQuantity();
-                break;
-            }
-        }
-    }
-
     public void setSantaGiftsList(final List<Gift> santaGiftList) {
         this.santaGiftsList = santaGiftList;
     }
@@ -85,13 +73,5 @@ public final class Santa {
 
     public List<Gift> getSantaGiftsList() {
         return santaGiftsList;
-    }
-
-    @Override
-    public String toString() {
-        return "Santa{" +
-                "santaBudget=" + santaBudget +
-                ", santaGiftsList=" + santaGiftsList +
-                '}';
     }
 }

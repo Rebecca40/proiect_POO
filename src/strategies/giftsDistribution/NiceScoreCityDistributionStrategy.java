@@ -2,20 +2,25 @@ package strategies.giftsDistribution;
 
 import entities.Child;
 import entities.Santa;
-import enums.Cities;
 import interfaces.DistributeGiftsStrategy;
 import simulation.Actions.DistributeGifts;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public final class NiceScoreCityDistributionStrategy implements DistributeGiftsStrategy {
     private List<Child> currentRoundChildren;
-    private Santa santa;
+    private final Santa santa;
     private Double averageCity = 0.0;
-    private Map<String, Double> averageScoreMap = new HashMap<>();
+    private final Map<String, Double> averageScoreMap = new HashMap<>();
 
-    public NiceScoreCityDistributionStrategy(List<Child> currentRoundChildren, Santa santa) {
+    public NiceScoreCityDistributionStrategy(final List<Child> currentRoundChildren,
+                                             final Santa santa) {
         this.currentRoundChildren = currentRoundChildren;
         this.santa = santa;
     }
@@ -26,7 +31,7 @@ public final class NiceScoreCityDistributionStrategy implements DistributeGiftsS
         * Map that stores the name of the city
         * and the niceScores of the children from that city
         */
-        Map<String, List<Double>> citiesScores= new HashMap<>();
+        Map<String, List<Double>> citiesScores = new HashMap<>();
         for (Child child : currentRoundChildren) {
             if (!citiesScores.containsKey(child.getCity().toString())) {
                 citiesScores.put(child.getCity().toString(), new LinkedList<>());
@@ -61,6 +66,7 @@ public final class NiceScoreCityDistributionStrategy implements DistributeGiftsS
                 new DistributeGifts(children, santa);
         updateReceivedGifts.update();
 
+        /* Sort children by id */
         currentRoundChildren = children.stream()
                 .sorted(Comparator.comparing(Child::getId))
                 .collect(Collectors.toList());

@@ -39,37 +39,31 @@ public final class DistributeGifts {
                  * If the list is empty then santa doesn't have a gift from the given category
                  */
                 if (!allGiftsFromCategory.isEmpty()) {
-//                    if (allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getQuantity() != 0) {
-                        Double giftPrice =
-                                allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getPrice();
-//                        if (child.getId() == 3) {
-//
-//                            System.out.println(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getProductName());
-//                        }
-                        /* Check if the gift doesn't exceed the child's budget*/
-                        if (childBudget - giftPrice >= 0) {
+                    Double giftPrice =
+                            allGiftsFromCategory.get(Constants.CHEAPEST_GIFT).getPrice();
 
-                            child.getReceivedGifts()
-                                    .add(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT));
+                    /* Check if the gift doesn't exceed the child's budget*/
+                    if (childBudget - giftPrice >= 0) {
+                        child.getReceivedGifts()
+                                .add(allGiftsFromCategory.get(Constants.CHEAPEST_GIFT));
 
-                            /* Decrease the gift's quantity*/
-                            List<Gift> copySantaGifts = new ArrayList<>(santa.getSantaGiftsList());
-                            findGift(allGiftsFromCategory
-                                    .get(Constants.CHEAPEST_GIFT), copySantaGifts);
-                            santa.setSantaGiftsList(copySantaGifts);
+                        /* Decrease the gift's quantity*/
+                        List<Gift> copySantaGifts = new ArrayList<>(santa.getSantaGiftsList());
+                        findGift(allGiftsFromCategory
+                                .get(Constants.CHEAPEST_GIFT), copySantaGifts);
+                        santa.setSantaGiftsList(copySantaGifts);
 
-                            childBudget -= giftPrice;
-                        }
+                        childBudget -= giftPrice;
                     }
-//                }
+                }
             }
         }
     }
 
     /**
      * Finds a given gift in santa's gifts list and decreases its quantity
-     */
-    public void findGift (Gift gift, List<Gift> giftsList) {
+     * */
+    public void findGift(final Gift gift, final List<Gift> giftsList) {
         for (Gift gift1 : giftsList) {
             if (gift.equals(gift1)) {
                 gift1.decreaseQuantity();
