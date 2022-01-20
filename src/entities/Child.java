@@ -55,7 +55,7 @@ public final class Child {
         this.elf = childBuilder.elf;
     }
 
-    public final static class ChildBuilder {
+    public static class ChildBuilder {
         private final Integer id;
         private final String lastName;
         private final String firstName;
@@ -85,8 +85,8 @@ public final class Child {
         /**
          *  Set the optional parameter
          */
-        public  ChildBuilder niceScoreBonus(final Double niceScoreBonus) {
-            this.niceScoreBonus = niceScoreBonus;
+        public ChildBuilder niceScoreBonus(final Double niceBonus) {
+            niceScoreBonus = niceBonus;
             return this;
         }
 

@@ -125,7 +125,11 @@
       "averageScore" : 9.533333333333333,
       "niceScoreHistory" : [ 9.0, 4.0, 9.0 ],
       "assignedBudget" : 313.4054054054054,
-      "receivedGifts" : [ ]
+      "receivedGifts" : [ {
+        "productName" : "Chocolate",
+        "price" : 15.0,
+        "category" : "Sweets"
+      } ]
     }, {
       "id" : 1,
       "lastName" : "Popescu",
@@ -140,6 +144,14 @@
         "productName" : "Chocolate",
         "price" : 15.0,
         "category" : "Sweets"
+      }, {
+        "productName" : "Diary of a Wimpy Kid",
+        "price" : 25.0,
+        "category" : "Books"
+      }, {
+        "productName" : "Uno",
+        "price" : 10.0,
+        "category" : "Board Games"
       } ]
     }, {
       "id" : 2,
@@ -155,6 +167,18 @@
         "productName" : "Uno",
         "price" : 10.0,
         "category" : "Board Games"
+      }, {
+        "productName" : "Bike",
+        "price" : 25.0,
+        "category" : "Toys"
+      }, {
+        "productName" : "Chocolate",
+        "price" : 15.0,
+        "category" : "Sweets"
+      }, {
+        "productName" : "Diary of a Wimpy Kid",
+        "price" : 25.0,
+        "category" : "Books"
       } ]
     } ]
   }, {
@@ -169,14 +193,6 @@
       "niceScoreHistory" : [ 9.0, 4.0, 9.0 ],
       "assignedBudget" : 84.57015177065767,
       "receivedGifts" : [ {
-        "productName" : "Diary of a Wimpy Kid",
-        "price" : 25.0,
-        "category" : "Books"
-      }, {
-        "productName" : "Bike",
-        "price" : 25.0,
-        "category" : "Toys"
-      }, {
         "productName" : "Chocolate",
         "price" : 15.0,
         "category" : "Sweets"

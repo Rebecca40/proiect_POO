@@ -17,6 +17,7 @@ public final class NiceScoreCityDistributionStrategy implements DistributeGiftsS
     private List<Child> currentRoundChildren;
     private final Santa santa;
     private Double averageCity = 0.0;
+    /* Stores the averageScore for every city */
     private final Map<String, Double> averageScoreMap = new HashMap<>();
 
     public NiceScoreCityDistributionStrategy(final List<Child> currentRoundChildren,
@@ -39,6 +40,7 @@ public final class NiceScoreCityDistributionStrategy implements DistributeGiftsS
             citiesScores.get(child.getCity().toString()).add(child.getAverageScore());
         }
 
+        /* Compute average score for each city */
         citiesScores.forEach((cities, doubles) -> {
             doubles.forEach(score -> averageCity += score);
 
@@ -46,12 +48,17 @@ public final class NiceScoreCityDistributionStrategy implements DistributeGiftsS
             averageCity = 0.0;
         });
 
+        /* Sort the cities by the average score and in case of equality sort them by the name */
         List<String> sortedCitiesList = averageScoreMap.entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed()
                         .thenComparing(Map.Entry.<String, Double>comparingByKey()))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
 
+        /*
+        * Create a list in which children are added in the descending
+        * order of the average score of the city they live in
+        */
         List<Child> children = new ArrayList<>();
         for (String cities : sortedCitiesList) {
             for (Child child : currentRoundChildren) {
@@ -66,7 +73,7 @@ public final class NiceScoreCityDistributionStrategy implements DistributeGiftsS
                 new DistributeGifts(children, santa);
         updateReceivedGifts.update();
 
-        /* Sort children by id */
+        /* Sort children by the id */
         currentRoundChildren = children.stream()
                 .sorted(Comparator.comparing(Child::getId))
                 .collect(Collectors.toList());
