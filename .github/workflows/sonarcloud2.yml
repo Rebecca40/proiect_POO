@@ -34,4 +34,4 @@ jobs:
           args: >
             -Dsonar.projectKey=Rebecca40_proiect_POO
             -Dsonar.organization=rebecca40
-        projectBaseDir: .
+            -Dsonar.projectBaseDir=.
